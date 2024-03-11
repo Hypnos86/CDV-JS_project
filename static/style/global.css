@@ -1,3 +1,142 @@
+/* Resetowanie CSS */
+
+/* Ogólne resetowanie */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 wyprowadzenia */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+/* Strukturalne elementy HTML */
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Zresetowanie elementu a do stanu domyślnego */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Reszta stylizacji według potrzeb */
+
 :root {
   --background-color: #c5aea01c;
   --header-color: #212529;
@@ -31,7 +170,39 @@ body {
   display: flex;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+
+/* Scrol bar */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 8px var(--yellow);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: var(--header-color);
+  border-radius: 5px;
+}
+
 /* header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
 .header-color {
   background-color: var(--header-color);
 }
@@ -51,16 +222,28 @@ header img {
 header h1 {
   padding: 0;
   margin-block-start: 1em;
-  margin-block-end: 1em;
+  margin-block-end: 0.5em;
   color: var(--logo-color);
   font-family: "nfs", sans-serif;
+  font-size: 1.5rem;
 }
 
 header h1::first-letter {
   color: #cacac8;
   font-size: 4rem;
+  /* background: linear-gradient(to top, #ff0000 50%, #0000ff 50%,var(--background-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Dla przeglądarek opartych na WebKit */
+  /* background-clip: text; */
+  /* color: transparent; */
 }
 
+.contact-baner {
+  margin-right: 50px;
+  color: var(--white);
+  font-family: "nfs", sans-serif;
+  font-size: 1.5rem;
+}
 /* footer */
 footer {
   background-color: white;
@@ -165,6 +348,7 @@ form {
   background-color: #b30000;
   color: whitesmoke;
   font-size: 18px;
+  cursor: pointer;
 }
 
 li svg {
@@ -187,8 +371,7 @@ input {
   background-color: transparent;
 }
 
-.btn:hover{
-    border-radius: 25px;
-    border: 1px solid var(--yellow)
-    
+.btn:hover {
+  border-radius: 25px;
+  border: 1px solid var(--yellow);
 }

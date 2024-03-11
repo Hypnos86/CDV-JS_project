@@ -1,0 +1,42 @@
+/* main */
+.search-bar {
+  justify-content: center;
+  padding: 20px;
+  font-size: large;
+  gap: 25px;
+  line-height: 2;
+}
+
+.search-bar input {
+  font-size: 16px;
+}
+
+.search-bar svg {
+  width: 20px;
+  height: 20px;
+}
+
+.search-bar button {
+  width: 80px;
+}
+
+.car-photo {
+  align-items: center;
+}
+
+.car-photo img {
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  margin: 15px;
+}
+
+.car-info {
+  margin-left: 80px;
+}
+
+#cars > li {
+  border: 2px solid var(--yellow);
+  border-radius: 10px;
+  margin: 25px auto;
+}

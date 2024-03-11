@@ -6,23 +6,24 @@
     <link rel="icon" type="image/png" href="static/assets/logoIcon.svg" />
     <title>Drifter - Shop</title>
     <link rel="stylesheet" href="./static/style/global.css" />
-    <link rel="stylesheet" href="static/style/style.css" />
-    <script defer type="module" src="static/scripts/index.js"></script>
+    <link rel="stylesheet" href="./static/style/index.css" />
+    <!-- <script type="module" src="./static/scripts/script.js"></script> -->
+    <script defer type="module" src="./static/scripts/index.js"></script>
   </head>
   <body>
-    <header class="header-color flex">
+    <header class="header-color flex justify-between align-center">
       <div class="flex">
-        <img src="static/assets/logo.png" alt="Logo firmy" />
-        <h1>D r i f t e r - S h o p</h1>
+        <img src="./static/assets/logo.png" alt="Logo firmy" />
+        <h1 class="title">D r i f t e r - S h o p</h1>
       </div>
       <div>
-        <span></span>
+        <a class="contact-baner" href="#contact">K o n t a k t</a>
       </div>
     </header>
     <main>
       <section>
-        <div class="search-car flex">
-          <label for="search">Wyszukaj swoją markę auta: </label>
+        <div class="search-bar flex">
+          <label for="search">Wyszukaj markę: </label>
           <input id="search" type="text" placeholder="tu wpisz szukaną markę" />
           <button class="btn">
             <svg
@@ -40,10 +41,12 @@
           </button>
         </div>
       </section>
-      <section id="cars"></section>
+      <section class="cars">
+        <ul id="cars"></ul>
+      </section>
     </main>
     <footer id="footer" class="bg-dark">
-      <section id="contact">
+      <div id="contact">
         <div class="contact">
           <p class="title-text">Napisz do nas!</p>
           <div class="row">
@@ -77,7 +80,7 @@
                     name="message"
                   ></textarea>
                 </div>
-                <input type="submit" value="Wyśli" class="btn-submit btn" />
+                <input type="submit" value="Wyśli" class="btn-submit" />
               </form>
             </div>
             <div class="contact-info">
@@ -101,7 +104,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </div>
       <p class="copyright">&copy; Nicponie Copyright 2023</p>
       <ul>
         <li>

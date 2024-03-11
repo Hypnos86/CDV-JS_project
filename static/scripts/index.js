@@ -1,3 +1,6 @@
-import { menu, titlePage } from "./script.js";
+import { menu, titlePage, carInject, searchCar } from "./script.js";
 titlePage();
 // menu();
+carInject();
+
+searchCar();
