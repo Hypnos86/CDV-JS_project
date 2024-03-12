@@ -23,6 +23,7 @@ export function carInject(cars = null) {
   }
 
   const ul = document.getElementById("cars");
+  ul.style.width = "60%";
   // console.log(cars);
 
   cars.forEach((car) => {
