@@ -24,7 +24,7 @@ export function carInject(cars = null) {
 
   const ul = document.getElementById("cars");
   // console.log(cars);
-  
+
   cars.forEach((car) => {
     // console.log(`${car.brand}`);
     let li = document.createElement("LI");
@@ -88,7 +88,6 @@ export function carInject(cars = null) {
     li.appendChild(infoDiv);
 
     ul.appendChild(li);
-    
   });
 }
 
@@ -104,7 +103,32 @@ export function searchCar() {
     );
     const ul = document.getElementById("cars");
     ul.innerHTML = "";
-    carInject(filteredList);
-    console.log(filteredList)
+    if (filteredList.length != 0) {
+      carInject(filteredList);
+    } else {
+      const ul = document.getElementById("cars");
+      ul.style.width = "100%";
+
+      const li = document.createElement("LI");
+      li.style.border = "none";
+      li.style.borderRadius = 0;
+
+      const div = document.createElement("DIV");
+      div.classList.add("empty");
+
+      const p = document.createElement("P");
+      p.innerText = "Nie znalazłeś swojej marki? \n Skonaktuj się z nami!";
+
+      div.appendChild(p);
+      li.appendChild(div);
+      ul.appendChild(li);
+      console.log("nic niemo");
+    }
+
+    console.log(filteredList);
   });
 }
+
+// export function choseCar(){
+
+// }

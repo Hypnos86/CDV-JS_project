@@ -156,11 +156,13 @@ html {
 }
 
 body {
-  margin: 0;
-  padding: 0 5%;
   background-color: var(--background-color);
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  padding: 0 30px;
 }
 * {
   box-sizing: border-box;
@@ -177,7 +179,6 @@ body {
 .align-center {
   align-items: center;
 }
-
 
 /* Scrol bar */
 /* width */
@@ -242,7 +243,22 @@ header h1::first-letter {
   margin-right: 50px;
   color: var(--white);
   font-family: "nfs", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .header-color h1 {
+    font-size: 1rem; /* Rozmiar czcionki dla mniejszych ekranów */
+    align-self: center;
+  }
+
+  header h1::first-letter {
+    font-size: 2rem;
+  }
+
+  .contact-baner {
+    font-size: 1rem;
+  }
 }
 /* footer */
 footer {
@@ -355,7 +371,7 @@ li svg {
   fill: whitesmoke;
 }
 
-input {
+#search {
   background-color: transparent;
   border: none;
   border-bottom: 2px solid var(--logo-color);
