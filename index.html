@@ -7,20 +7,10 @@
     <title>Drifter - Shop</title>
     <link rel="stylesheet" href="./static/style/global.css" />
     <link rel="stylesheet" href="./static/style/index.css" />
-    <!-- <script type="module" src="./static/scripts/script.js"></script> -->
     <script defer type="module" src="./static/scripts/index.js"></script>
   </head>
   <body>
-    <header class="header-color flex justify-between align-center">
-      <div class="flex">
-        <img src="./static/assets/logo.png" alt="Logo firmy" />
-        <h1 class="title">D r i f t e r - S h o p</h1>
-      </div>
-      <div>
-        <a class="contact-baner" href="#contact">K o n t a k t</a>
-      </div>
-    </header>
-    <main>
+    <main id="main">
       <section>
         <div class="search-bar flex">
           <label for="search">Wyszukaj markę: </label>
@@ -31,6 +21,29 @@
         <ul id="cars"></ul>
       </section>
     </main>
+    <section id="customize" class="hidden">
+    <!-- <section id="customize" class=""> -->
+      <div class="photos"></div>
+      <div class="finance">
+        <div class="">
+          <input type="radio" id="leasing" name="finansing" value="Leasing" />
+          <label for="leasing">Leasing</label><br />
+          <input type="radio" id="cash" name="finansing" value="Gotówka" />
+          <label for="bash">Gotówka</label>
+        </div>
+        <div class="">
+          <span>Cena całkowiata:</span>
+          <span>Wybrane auto: </span>
+        </div>
+      </div>
+      <div>
+        <label for="nameAndSurname">Imię i nazwisko</label><input id="nameAndSurname" type="text">
+        <label for="placeOfDelivery">Miejsce odbioru</label><input id="placeOfDelivery" type="text">
+        <label for="dateOfDelivery">Data odbioru</label><input class="dateOfDelivery" id="dateOfDelivery" type="date">
+      </div>
+      <div>lalala</div>
+      <button id="cancel">Anuluj</button>
+    </section>
     <footer id="footer" class="bg-dark">
       <div id="contact">
         <div class="contact">

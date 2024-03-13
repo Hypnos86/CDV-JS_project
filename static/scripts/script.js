@@ -8,13 +8,20 @@ export function titlePage() {
 
 export function menu() {
   const $body = document.querySelector("body");
-  const $div = document.createElement("div");
-  $div.innerHTML = `
-  <header class="header-color flex">
-    <img src="static/assets/logo.png" alt="Logo firmy">
-    <h1>D r i f t e r - S h o p</h1>
-  </header>`;
-  $body.insertBefore($div, $body.firstChild);
+  const $header = document.createElement("header");
+  $header.classList.add("header-color");
+  $header.classList.add("flex");
+  $header.classList.add("justify-between");
+  $header.classList.add("align-center");
+  $header.innerHTML = `
+      <div class="flex">
+        <img src="./static/assets/logo.png" alt="Logo firmy" />
+        <h1 class="title">D r i f t e r - S h o p</h1>
+      </div>
+      <div>
+        <a class="contact-baner" href="#contact">K o n t a k t</a>
+      </div>`;
+  $body.insertBefore($header, $body.firstChild);
 }
 
 export function carInject(cars = null) {
@@ -80,10 +87,14 @@ export function carInject(cars = null) {
     let infoDescription = document.createElement("LI");
     let description = document.createElement("P");
     description.innerText = car.shortDescription;
-    infoDescription.appendChild(description);
-    infoUl.appendChild(infoDescription);
+
+    let button = document.createElement("BUTTON");
+    button.innerText = "Wybieram";
+    button.classList.add("btn-choose");
 
     infoDiv.appendChild(infoUl);
+    infoDiv.appendChild(description);
+    infoDiv.appendChild(button);
 
     li.appendChild(photoDiv);
     li.appendChild(infoDiv);
@@ -130,6 +141,61 @@ export function searchCar() {
   });
 }
 
-// export function choseCar(){
+export function choosenCar() {
+  const $ulCars = document.getElementById("cars");
+  const $mainTag = document.getElementById("main");
+  const $customize = document.getElementById("customize");
+  $ulCars.addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+      console.log(e.target.closest(".car-info"));
 
-// }
+      let parentDiv = e.target.closest(".car-info");
+      console.log(parentDiv.children[0].children);
+      let storage = {};
+      for (const child of parentDiv.children[0].children) {
+        const meta = child.innerText.split(":")[0].trim();
+        let car = child.innerText.split(":")[1];
+
+        if (car.startsWith(" ")) {
+          car = car.slice(1);
+        }
+        storage[meta] = car;
+        console.log(child.innerText.split(":")[1]);
+      }
+      console.log(storage);
+      localStorage.setItem("buyCar", JSON.stringify(storage));
+      // window.location.href = "customize_car.html";
+      $mainTag.classList.toggle("hidden");
+      $customize.classList.toggle("hidden");
+    }
+  });
+}
+
+export function cancelChoose() {
+  const $btn = document.getElementById("cancel");
+  const $mainTag = document.getElementById("main");
+  const $customize = document.getElementById("customize");
+  $btn.addEventListener("click", () => {
+    $mainTag.classList.toggle("hidden");
+    $customize.classList.toggle("hidden");
+  });
+}
+
+export function newCalendar() {
+  const calendarInputs = document.getElementsByClassName("dateOfDelivery");
+  
+  if (calendarInputs.length === 0) {
+    console.error("Nie znaleziono elementów o klasie 'dateOfDelivery'");
+    return;
+  }
+
+  const today = new Date();
+  const minDate = today.toISOString().split("T")[0];
+  today.setDate(today.getDate() + 14);
+  const maxDate = today.toISOString().split("T")[0];
+
+  for (const input of calendarInputs) {
+    input.min = minDate;
+    input.max = maxDate;
+  }
+}

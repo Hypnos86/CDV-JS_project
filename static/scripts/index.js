@@ -1,6 +1,17 @@
-import { menu, titlePage, carInject, searchCar } from "./script.js";
+import {
+  menu,
+  titlePage,
+  carInject,
+  searchCar,
+  choosenCar,
+  cancelChoose,
+  newCalendar,
+} from "./script.js";
 titlePage();
-// menu();
+menu();
 carInject();
 
 searchCar();
+choosenCar();
+cancelChoose();
+newCalendar();

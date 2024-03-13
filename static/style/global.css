@@ -381,11 +381,7 @@ input {
   outline: auto 0px;
 }
 
-.btn {
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-}
+
 
 .btn:hover {
   border-radius: 25px;
