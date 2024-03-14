@@ -76,9 +76,33 @@
   display: none;
 }
 
-
-#customize{
+#customize {
   width: 95%;
   margin: 0 auto;
-  background-color: aqua;
+  background-color: rgba(8, 92, 92, 0.575);
+}
+
+.choosenCar {
+  width: 20%;
+}
+
+.finance div {
+  margin: 40px 20px;
+}
+
+.customer-data ul{
+  margin: 30px;
+}
+
+.customer-data ul li{
+  margin: 15px 0 ;
+}
+
+.customer-data ul li label{
+  display: inline-block;
+  width: 120px;
+}
+
+.cancelAndBuyButton{
+  padding: 0 150px 30px;
 }

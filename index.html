@@ -10,7 +10,7 @@
     <script defer type="module" src="./static/scripts/index.js"></script>
   </head>
   <body>
-    <main id="main">
+    <main id="main" class="hidden">
       <section>
         <div class="search-bar flex">
           <label for="search">Wyszukaj markę: </label>
@@ -21,28 +21,52 @@
         <ul id="cars"></ul>
       </section>
     </main>
-    <section id="customize" class="hidden">
-    <!-- <section id="customize" class=""> -->
+    <section id="customize" class="">
+      <!-- <section id="customize" class=""> -->
       <div class="photos"></div>
-      <div class="finance">
+      <div class="finance flex justify-between">
         <div class="">
           <input type="radio" id="leasing" name="finansing" value="Leasing" />
           <label for="leasing">Leasing</label><br />
           <input type="radio" id="cash" name="finansing" value="Gotówka" />
-          <label for="bash">Gotówka</label>
+          <label for="cash">Gotówka</label>
         </div>
-        <div class="">
-          <span>Cena całkowiata:</span>
-          <span>Wybrane auto: </span>
+        <div class="choosenCar">
+          <span>Cena całkowiata: </span><span id="price"></span><br />
+          <span>Wybrane auto: </span><span id="modelCar"></span>
         </div>
+      </div>
+      <div class="customer-data">
+        <ul>
+          <li>
+            <label for="nameAndSurname">Imię i nazwisko</label>
+            <input id="nameAndSurname" type="text" />
+          </li>
+          <li>
+            <label for="placeOfDelivery">Miejsce odbioru</label>
+            <input id="placeOfDelivery" type="text" />
+          </li>
+          <li>
+            <label for="dateOfDelivery">Data odbioru</label>
+            <input class="dateOfDelivery" id="dateOfDelivery" type="date" />
+          </li>
+        </ul>
+      </div>
+      <div class="flex justify-between cancelAndBuyButton">
+        <button id="cancel">Powrót do wyboru</button>
+        <button id="buy">Zakup</button>
       </div>
       <div>
-        <label for="nameAndSurname">Imię i nazwisko</label><input id="nameAndSurname" type="text">
-        <label for="placeOfDelivery">Miejsce odbioru</label><input id="placeOfDelivery" type="text">
-        <label for="dateOfDelivery">Data odbioru</label><input class="dateOfDelivery" id="dateOfDelivery" type="date">
+        <h2>Akcesoria</h2>
+        <div id="accessories" class="flex">
+          <ul>
+            <li>a</li>
+          </ul>
+          <ul>
+            <li>b</li>
+          </ul>
+        </div>
       </div>
-      <div>lalala</div>
-      <button id="cancel">Anuluj</button>
     </section>
     <footer id="footer" class="bg-dark">
       <div id="contact">
@@ -83,12 +107,14 @@
             <div class="contact-info">
               <h3>Kontakt</h3>
               <p class="factory-color">Nicponie <sup>&reg;</sup></p>
-              <p><i class="bi bi-at icon-color"></i> kontakt@email.com</p>
-              <p><i class="bi bi-phone icon-color"></i> +48 792 382 000</p>
-              <p>
-                <i class="bi bi-geo-alt icon-color"></i>
-                <span>ul.Kutrzeby 10,</span><br /><span>61-719 Poznań</span>
-              </p>
+              <address>
+                <p><i class="bi bi-at icon-color"></i> kontakt@email.com</p>
+                <p><i class="bi bi-phone icon-color"></i> +48 792 382 000</p>
+                <p>
+                  <i class="bi bi-geo-alt icon-color"></i>
+                  <span>ul.Kutrzeby 10,</span><br /><span>61-719 Poznań</span>
+                </p>
+              </address>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2433.4922376218096!2d16.92910287667485!3d52.41587817203419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47045b458e6d37f9%3A0x630f1e648e79b67!2sCollegium%20Da%20Vinci!5e0!3m2!1spl!2spl!4v1700586689917!5m2!1spl!2spl"
                 width="240"

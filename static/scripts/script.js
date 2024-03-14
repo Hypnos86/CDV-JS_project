@@ -1,6 +1,7 @@
 import { Cars } from "./cars.js";
 
 const carsInstance = new Cars();
+const nameLocalStorage = "buyCar";
 
 export function titlePage() {
   document.title = "Drifter Shop";
@@ -22,6 +23,15 @@ export function menu() {
         <a class="contact-baner" href="#contact">K o n t a k t</a>
       </div>`;
   $body.insertBefore($header, $body.firstChild);
+}
+
+function setToLocalSstorage(nameList, storageObject) {
+  localStorage.setItem(nameList, JSON.stringify(storageObject));
+}
+
+function getFromLocaStorage(nameList) {
+  let carItem = JSON.parse(localStorage.getItem(nameList));
+  return carItem;
 }
 
 export function carInject(cars = null) {
@@ -80,7 +90,7 @@ export function carInject(cars = null) {
 
     let infoPrice = document.createElement("LI");
     let price = document.createElement("SPAN");
-    price.innerHTML = `Cena: ${car.price} zł`;
+    price.innerHTML = `Cena: ${parseFloat(car.price).toLocaleString("pl-PL")} zł`;
     infoPrice.appendChild(price);
     infoUl.appendChild(infoPrice);
 
@@ -140,6 +150,18 @@ export function searchCar() {
     console.log(filteredList);
   });
 }
+export function iputCarDataFromLocalStorage() {
+  let data = getFromLocaStorage(nameLocalStorage);
+  console.log(data);
+  if (data == {}) {
+    return;
+  }
+  let $price = document.getElementById("price");
+  let $model = document.getElementById("modelCar");
+  $price.innerText = data["cena"];
+  $model.innerText = `${data["marka"]} ${data["model"]}`;
+  
+}
 
 export function choosenCar() {
   const $ulCars = document.getElementById("cars");
@@ -153,7 +175,7 @@ export function choosenCar() {
       console.log(parentDiv.children[0].children);
       let storage = {};
       for (const child of parentDiv.children[0].children) {
-        const meta = child.innerText.split(":")[0].trim();
+        const meta = child.innerText.split(":")[0].toLowerCase().trim();
         let car = child.innerText.split(":")[1];
 
         if (car.startsWith(" ")) {
@@ -163,13 +185,16 @@ export function choosenCar() {
         console.log(child.innerText.split(":")[1]);
       }
       console.log(storage);
-      localStorage.setItem("buyCar", JSON.stringify(storage));
-      // window.location.href = "customize_car.html";
+      setToLocalSstorage(nameLocalStorage, storage);
+
       $mainTag.classList.toggle("hidden");
       $customize.classList.toggle("hidden");
+      iputCarDataFromLocalStorage();
     }
   });
 }
+
+
 
 export function cancelChoose() {
   const $btn = document.getElementById("cancel");
@@ -183,7 +208,7 @@ export function cancelChoose() {
 
 export function newCalendar() {
   const calendarInputs = document.getElementsByClassName("dateOfDelivery");
-  
+
   if (calendarInputs.length === 0) {
     console.error("Nie znaleziono elementów o klasie 'dateOfDelivery'");
     return;
@@ -197,5 +222,6 @@ export function newCalendar() {
   for (const input of calendarInputs) {
     input.min = minDate;
     input.max = maxDate;
+    input.value = minDate;
   }
 }
