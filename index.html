@@ -10,7 +10,7 @@
     <script defer type="module" src="./static/scripts/index.js"></script>
   </head>
   <body>
-    <main id="main" class="hidden">
+    <main id="main" >
       <section>
         <div class="search-bar flex">
           <label for="search">Wyszukaj markę: </label>
@@ -21,7 +21,7 @@
         <ul id="cars"></ul>
       </section>
     </main>
-    <section id="customize" class="">
+    <section id="customize" class="hidden">
       <!-- <section id="customize" class=""> -->
       <div class="photos"></div>
       <div class="finance flex justify-between">
@@ -52,15 +52,20 @@
           </li>
         </ul>
       </div>
-      <div>
+      <div class="flex wrap justify-around">
         <div class="">
-          <h2>Akcesoria</h2>
-          <ul id="accessories"></ul>
+          <h2 class="accessories-title">Akcesoria do wyboru</h2>
+          <ul id="accessories" class="accessories-list add"></ul>
         </div>
         <div>
-          <ul>
-            <li>b</li>
-          </ul>
+          <h2 class="accessories-title">Wybrane akcesoria</h2>
+          <ul id="choosenAccessories" class="accessories-list"></ul>
+          <details id="details">
+            <summary id="summary">
+              <span>Kwota brutto: </span><input type="number" value="" readonly />
+            </summary>
+            A keyboard.
+          </details>
         </div>
       </div>
       <div class="flex justify-between cancelAndBuyButton">

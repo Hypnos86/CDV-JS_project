@@ -172,6 +172,10 @@ main {
   display: flex;
 }
 
+.wrap{
+  flex-wrap: wrap;
+}
+
 .justify-between {
   justify-content: space-between;
 }
@@ -333,6 +337,7 @@ footer ul li {
 
 form {
   text-align: center;
+ 
 }
 
 .form-text {

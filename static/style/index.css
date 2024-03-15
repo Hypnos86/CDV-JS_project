@@ -91,34 +91,58 @@
   margin: 40px 20px;
 }
 
-.customer-data ul{
+.customer-data ul {
   margin: 30px;
 }
 
-.customer-data ul li{
-  margin: 15px 0 ;
+.customer-data ul li {
+  margin: 15px 0;
 }
 
-.customer-data ul li label{
+.customer-data ul li label {
   display: inline-block;
-  width: 120px;
+  min-width: 120px;
 }
-#accessories{
-  width: 50%;
-}
-
-#accessories li{
-  width: 100%;
+.accessories-list {
+  width: 460px;
+  padding: 20px;
 }
 
-#accessories li::after{
+.accessories-list li {
+  padding: 5px;
+  /* width: 460px; */
   width: inherit;
-  content: "X";
-  margin-left: 300px;
-
+  line-height: 1.5;
 }
 
-.cancelAndBuyButton{
+.accessories-list li:hover {
+  background-color: bisque;
+  border-radius: 10px;
+  button{
+    display: block;
+  }
+}
+
+.accessories-name {
+  min-width: 300px;
+}
+
+.accessories-price {
+  min-width: 120px;
+}
+
+.accessories-list button {
+  border: 1px solid red;
+  border-radius: 25px;
+  cursor: pointer;
+  display: none;
+  padding: 2px 8px;
+}
+
+.cancelAndBuyButton {
   padding: 0 150px 30px;
 }
 
+.accessories-title {
+  text-align: center;
+}

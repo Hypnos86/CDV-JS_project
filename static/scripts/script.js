@@ -2,8 +2,9 @@ import { Cars } from "./cars.js";
 import { Accessories } from "./accessories.js";
 
 const carsInstance = new Cars();
-const nameLocalStorage = "buyCar";
+const carLocalStorage = "buyCar";
 const accessoriesInstance = new Accessories();
+const accessoriesLocalStorage = "buyAccessories";
 
 export function titlePage() {
   document.title = "Drifter Shop";
@@ -98,7 +99,6 @@ export function carInject(cars = null) {
     infoPrice.appendChild(price);
     infoUl.appendChild(infoPrice);
 
-    let infoDescription = document.createElement("LI");
     let description = document.createElement("P");
     description.innerText = car.shortDescription;
 
@@ -121,7 +121,7 @@ export function searchCar() {
   const searchInput = document.getElementById("search");
   searchInput.addEventListener("input", (e) => {
     const searchBrand = e.target.value.toLowerCase().trim();
-    console.log(searchBrand);
+    // console.log(searchBrand);
 
     const cars = carsInstance.getAllCars();
     const filteredList = cars.filter((x) =>
@@ -148,15 +148,14 @@ export function searchCar() {
       div.appendChild(p);
       li.appendChild(div);
       ul.appendChild(li);
-      console.log("nic niemo");
     }
 
-    console.log(filteredList);
+    // console.log(filteredList);
   });
 }
 export function iputCarDataFromLocalStorage() {
-  let data = getFromLocaStorage(nameLocalStorage);
-  console.log(data);
+  let data = getFromLocaStorage(carLocalStorage);
+  // console.log(data);
   if (data) {
     let $price = document.getElementById("price");
     let $model = document.getElementById("modelCar");
@@ -171,11 +170,12 @@ export function choosenCar() {
   const $customize = document.getElementById("customize");
   $ulCars.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON") {
-      console.log(e.target.closest(".car-info"));
+      // console.log(e.target.closest(".car-info"));
 
       let parentDiv = e.target.closest(".car-info");
-      console.log(parentDiv.children[0].children);
+      // console.log(parentDiv.children[0].children);
       let storage = {};
+
       for (const child of parentDiv.children[0].children) {
         const meta = child.innerText.split(":")[0].toLowerCase().trim();
         let car = child.innerText.split(":")[1];
@@ -184,10 +184,10 @@ export function choosenCar() {
           car = car.slice(1);
         }
         storage[meta] = car;
-        console.log(child.innerText.split(":")[1]);
+        // console.log(child.innerText.split(":")[1]);
       }
-      console.log(storage);
-      setToLocalSstorage(nameLocalStorage, storage);
+      // console.log(storage);
+      setToLocalSstorage(carLocalStorage, storage);
 
       $mainTag.classList.toggle("hidden");
       $customize.classList.toggle("hidden");
@@ -210,7 +210,7 @@ export function newCalendar() {
   const calendarInputs = document.getElementsByClassName("dateOfDelivery");
 
   if (calendarInputs.length === 0) {
-    console.error("Nie znaleziono elementów o klasie 'dateOfDelivery'");
+    console.error("Nie znaleziono elementów w .dateOfDelivery");
     return;
   }
 
@@ -226,14 +226,84 @@ export function newCalendar() {
   }
 }
 
-export function accessoriesInjection() {
-  const accessoriesItems = accessoriesInstance.getAllAccessories();
-  console.log(accessoriesInstance.getAllAccessories());
-  const ul = document.getElementById("accessories");
-  accessoriesItems.forEach((acc) => {
-    console.log(acc.name);
-    let li = document.createElement("LI");
-    li.innerText=`${acc.name} - cena ${acc.price} zł`
-    ul.appendChild(li);
+export function accessoriesInjection(accessoriesItems = null) {
+  try {
+    if (accessoriesItems === null) {
+      accessoriesItems = accessoriesInstance.getAllAccessories();
+    }
+    // const accessoriesItems = accessoriesInstance.getAllAccessories();
+    // console.log(accessoriesInstance.getAllAccessories());
+    const ul = document.getElementById("accessories");
+    ul.innerText = "";
+
+    accessoriesItems.forEach((acc) => {
+      // console.log(acc.name);
+      let li = document.createElement("LI");
+      li.classList.add("flex");
+      let spanName = document.createElement("SPAN");
+      spanName.classList.add("accessories-name");
+      let spanPrice = document.createElement("SPAN");
+      spanPrice.classList.add("accessories-price");
+      spanName.innerText = `${acc.id}. ${acc.name}`;
+      spanPrice.innerText = `cena: ${parseFloat(acc.price).toLocaleString(
+        "pl-PL"
+      )} zł`;
+      const button = document.createElement("BUTTON");
+      button.innerText = "+";
+      li.appendChild(spanName);
+      li.appendChild(spanPrice);
+      li.appendChild(button);
+      ul.appendChild(li);
+
+      return accessoriesItems;
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export function createChoosenAccessoriesList(object) {
+  let list = [];
+  const ul = document.getElementById("choosenAccessories");
+  let li = document.createElement("LI");
+  let span = document.createElement("SPAN");
+  span.innerText = `${object.name} - ${object.price}`;
+  li.appendChild(span);
+  ul.appendChild(li);
+  list.push(object);
+  console.log(list);
+}
+
+export function addAccessoriesToList() {
+  const accessories = document.getElementById("accessories");
+  accessories.addEventListener("click", (e) => {
+    const parentUl = e.target.closest(".flex");
+    const itemObjects = parentUl.children;
+    const itemName = itemObjects[0];
+    let itemNameObject = itemName.innerText.split(".")[1];
+    let idObject = itemName.innerText.split(".")[0];
+    console.log(idObject);
+
+    if (itemNameObject.startsWith(" ")) {
+      itemNameObject = itemNameObject.slice(1);
+    }
+
+    const itemPrice = itemObjects[1];
+
+    let itemPriceObject = itemPrice.innerText.split(":")[1];
+
+    if (itemPriceObject.startsWith(" ")) {
+      itemPriceObject = itemPriceObject.slice(1);
+    }
+
+    const accessoriesObject = { name: itemNameObject, price: itemPriceObject };
+    createChoosenAccessoriesList(accessoriesObject);
+
+    let accList = accessoriesInstance.getAllAccessories();
+    console.log(accList);
+    let accListfiltered = accList.filter((x) => x.id != Number(idObject));
+    console.log(accListfiltered);
+
+    accessoriesInjection(accListfiltered);
   });
 }
