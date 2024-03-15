@@ -1,7 +1,9 @@
 import { Cars } from "./cars.js";
+import { Accessories } from "./accessories.js";
 
 const carsInstance = new Cars();
 const nameLocalStorage = "buyCar";
+const accessoriesInstance = new Accessories();
 
 export function titlePage() {
   document.title = "Drifter Shop";
@@ -90,7 +92,9 @@ export function carInject(cars = null) {
 
     let infoPrice = document.createElement("LI");
     let price = document.createElement("SPAN");
-    price.innerHTML = `Cena: ${parseFloat(car.price).toLocaleString("pl-PL")} zł`;
+    price.innerHTML = `Cena: ${parseFloat(car.price).toLocaleString(
+      "pl-PL"
+    )} zł`;
     infoPrice.appendChild(price);
     infoUl.appendChild(infoPrice);
 
@@ -153,14 +157,12 @@ export function searchCar() {
 export function iputCarDataFromLocalStorage() {
   let data = getFromLocaStorage(nameLocalStorage);
   console.log(data);
-  if (data == {}) {
-    return;
+  if (data) {
+    let $price = document.getElementById("price");
+    let $model = document.getElementById("modelCar");
+    $price.innerText = data["cena"];
+    $model.innerText = `${data["marka"]} ${data["model"]}`;
   }
-  let $price = document.getElementById("price");
-  let $model = document.getElementById("modelCar");
-  $price.innerText = data["cena"];
-  $model.innerText = `${data["marka"]} ${data["model"]}`;
-  
 }
 
 export function choosenCar() {
@@ -194,8 +196,6 @@ export function choosenCar() {
   });
 }
 
-
-
 export function cancelChoose() {
   const $btn = document.getElementById("cancel");
   const $mainTag = document.getElementById("main");
@@ -224,4 +224,16 @@ export function newCalendar() {
     input.max = maxDate;
     input.value = minDate;
   }
+}
+
+export function accessoriesInjection() {
+  const accessoriesItems = accessoriesInstance.getAllAccessories();
+  console.log(accessoriesInstance.getAllAccessories());
+  const ul = document.getElementById("accessories");
+  accessoriesItems.forEach((acc) => {
+    console.log(acc.name);
+    let li = document.createElement("LI");
+    li.innerText=`${acc.name} - cena ${acc.price} zł`
+    ul.appendChild(li);
+  });
 }

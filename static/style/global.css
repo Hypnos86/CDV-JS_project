@@ -185,6 +185,7 @@ main {
 }
 
 /* Scrol bar */
+
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
@@ -192,13 +193,13 @@ main {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 8px var(--yellow);
+  box-shadow: inset 0 0 5px var(--header-color);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background-color: var(--header-color);
-  border-radius: 5px;
+  border-radius: 0;
 }
 
 /* header */

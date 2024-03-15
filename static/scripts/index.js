@@ -6,7 +6,8 @@ import {
   choosenCar,
   cancelChoose,
   newCalendar,
-  iputCarDataFromLocalStorage
+  iputCarDataFromLocalStorage,
+  accessoriesInjection
 } from "./script.js";
 titlePage();
 menu();
@@ -16,4 +17,5 @@ searchCar();
 choosenCar();
 cancelChoose();
 newCalendar();
-iputCarDataFromLocalStorage()
+iputCarDataFromLocalStorage(),
+accessoriesInjection()
