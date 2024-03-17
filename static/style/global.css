@@ -136,6 +136,9 @@ a {
 }
 
 /* Reszta stylizacji według potrzeb */
+* {
+  box-sizing: border-box;
+}
 
 :root {
   --background-color: #c5aea01c;
@@ -159,20 +162,28 @@ body {
   background-color: var(--background-color);
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
 }
 
 main {
   padding: 0 30px;
 }
-* {
-  box-sizing: border-box;
+
+#accessoriesLists{
+  height: 80vh;
+}
+
+
+
+.hidden {
+  display: none;
 }
 
 .flex {
   display: flex;
 }
 
-.wrap{
+.wrap {
   flex-wrap: wrap;
 }
 
@@ -337,7 +348,6 @@ footer ul li {
 
 form {
   text-align: center;
- 
 }
 
 .form-text {
@@ -390,8 +400,6 @@ li svg {
 input {
   outline: auto 0px;
 }
-
-
 
 .btn:hover {
   border-radius: 25px;

@@ -1,4 +1,5 @@
 import {
+  accessoriesList,
   menu,
   titlePage,
   carInject,
@@ -7,8 +8,9 @@ import {
   cancelChoose,
   newCalendar,
   iputCarDataFromLocalStorage,
-  accessoriesInjection,
-  addAccessoriesToList,
+  renderList,
+  addAccessoryToNewList,
+  removeAccessoryItemFromList,
 } from "./script.js";
 titlePage();
 menu();
@@ -18,5 +20,6 @@ choosenCar();
 cancelChoose();
 newCalendar();
 iputCarDataFromLocalStorage();
-accessoriesInjection();
-addAccessoriesToList();
+renderList(accessoriesList.newList);
+addAccessoryToNewList();
+removeAccessoryItemFromList();

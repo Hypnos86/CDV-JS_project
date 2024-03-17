@@ -73,10 +73,6 @@
   padding: 5px 10px;
 }
 
-.hidden {
-  display: none;
-}
-
 #customize {
   width: 95%;
   margin: 0 auto;
@@ -103,22 +99,30 @@
   display: inline-block;
   min-width: 120px;
 }
+
 .accessories-list {
-  width: 460px;
+  width: 500px;
+  /* width: auto; */
   padding: 20px;
+  counter-reset: list-counter;
 }
 
 .accessories-list li {
   padding: 5px;
-  /* width: 460px; */
   width: inherit;
   line-height: 1.5;
+}
+
+.accessories-list li::before {
+  content: counter(list-counter) "."; 
+  counter-increment: list-counter;
+  width: 30px;
 }
 
 .accessories-list li:hover {
   background-color: bisque;
   border-radius: 10px;
-  button{
+  button {
     display: block;
   }
 }
@@ -128,7 +132,7 @@
 }
 
 .accessories-price {
-  min-width: 120px;
+  min-width: 80px;
 }
 
 .accessories-list button {

@@ -5,6 +5,12 @@ const carsInstance = new Cars();
 const carLocalStorage = "buyCar";
 const accessoriesInstance = new Accessories();
 const accessoriesLocalStorage = "buyAccessories";
+export const accessoriesList = {
+  newList: "newList",
+  selectedList: "selectedList",
+};
+
+const selectedList = "selectedList";
 
 export function titlePage() {
   document.title = "Drifter Shop";
@@ -44,10 +50,8 @@ export function carInject(cars = null) {
 
   const ul = document.getElementById("cars");
   ul.style.width = "60%";
-  // console.log(cars);
 
   cars.forEach((car) => {
-    // console.log(`${car.brand}`);
     let li = document.createElement("LI");
     li.classList.add("flex");
 
@@ -121,7 +125,6 @@ export function searchCar() {
   const searchInput = document.getElementById("search");
   searchInput.addEventListener("input", (e) => {
     const searchBrand = e.target.value.toLowerCase().trim();
-    // console.log(searchBrand);
 
     const cars = carsInstance.getAllCars();
     const filteredList = cars.filter((x) =>
@@ -149,13 +152,10 @@ export function searchCar() {
       li.appendChild(div);
       ul.appendChild(li);
     }
-
-    // console.log(filteredList);
   });
 }
 export function iputCarDataFromLocalStorage() {
   let data = getFromLocaStorage(carLocalStorage);
-  // console.log(data);
   if (data) {
     let $price = document.getElementById("price");
     let $model = document.getElementById("modelCar");
@@ -170,10 +170,8 @@ export function choosenCar() {
   const $customize = document.getElementById("customize");
   $ulCars.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON") {
-      // console.log(e.target.closest(".car-info"));
-
       let parentDiv = e.target.closest(".car-info");
-      // console.log(parentDiv.children[0].children);
+
       let storage = {};
 
       for (const child of parentDiv.children[0].children) {
@@ -184,9 +182,7 @@ export function choosenCar() {
           car = car.slice(1);
         }
         storage[meta] = car;
-        // console.log(child.innerText.split(":")[1]);
       }
-      // console.log(storage);
       setToLocalSstorage(carLocalStorage, storage);
 
       $mainTag.classList.toggle("hidden");
@@ -200,9 +196,13 @@ export function cancelChoose() {
   const $btn = document.getElementById("cancel");
   const $mainTag = document.getElementById("main");
   const $customize = document.getElementById("customize");
+
   $btn.addEventListener("click", () => {
     $mainTag.classList.toggle("hidden");
     $customize.classList.toggle("hidden");
+    accessoriesInstance.removeAllSelectedList();
+    renderList(accessoriesList.newList);
+    renderList(accessoriesList.selectedList);
   });
 }
 
@@ -226,84 +226,99 @@ export function newCalendar() {
   }
 }
 
-export function accessoriesInjection(accessoriesItems = null) {
-  try {
-    if (accessoriesItems === null) {
-      accessoriesItems = accessoriesInstance.getAllAccessories();
-    }
-    // const accessoriesItems = accessoriesInstance.getAllAccessories();
-    // console.log(accessoriesInstance.getAllAccessories());
-    const ul = document.getElementById("accessories");
-    ul.innerText = "";
+function renderHTMLList(accessoryList, typeList) {
+  const ul = document.createElement("ul");
 
-    accessoriesItems.forEach((acc) => {
-      // console.log(acc.name);
-      let li = document.createElement("LI");
-      li.classList.add("flex");
-      let spanName = document.createElement("SPAN");
-      spanName.classList.add("accessories-name");
-      let spanPrice = document.createElement("SPAN");
-      spanPrice.classList.add("accessories-price");
-      spanName.innerText = `${acc.id}. ${acc.name}`;
-      spanPrice.innerText = `cena: ${parseFloat(acc.price).toLocaleString(
-        "pl-PL"
-      )} zł`;
-      const button = document.createElement("BUTTON");
-      button.innerText = "+";
-      li.appendChild(spanName);
-      li.appendChild(spanPrice);
-      li.appendChild(button);
-      ul.appendChild(li);
+  accessoryList.forEach((x) => {
+    let li = document.createElement("li");
+    li.classList.add("flex");
 
-      return accessoriesItems;
-    });
-  } catch (e) {
-    console.error(e);
-  }
-}
+    let spanId = document.createElement("span");
+    spanId.innerText = x.id;
+    spanId.classList.add("hidden");
 
-export function createChoosenAccessoriesList(object) {
-  let list = [];
-  const ul = document.getElementById("choosenAccessories");
-  let li = document.createElement("LI");
-  let span = document.createElement("SPAN");
-  span.innerText = `${object.name} - ${object.price}`;
-  li.appendChild(span);
-  ul.appendChild(li);
-  list.push(object);
-  console.log(list);
-}
+    let spanName = document.createElement("span");
+    spanName.classList.add("accessories-name");
+    spanName.innerText = x.name;
 
-export function addAccessoriesToList() {
-  const accessories = document.getElementById("accessories");
-  accessories.addEventListener("click", (e) => {
-    const parentUl = e.target.closest(".flex");
-    const itemObjects = parentUl.children;
-    const itemName = itemObjects[0];
-    let itemNameObject = itemName.innerText.split(".")[1];
-    let idObject = itemName.innerText.split(".")[0];
-    console.log(idObject);
+    let spanPrice = document.createElement("span");
+    spanPrice.classList.add("accessories-price");
+    spanPrice.innerText = `${parseFloat(x.price).toLocaleString("pl-PL")} zł`;
 
-    if (itemNameObject.startsWith(" ")) {
-      itemNameObject = itemNameObject.slice(1);
-    }
+    const button = document.createElement("button");
+    button.innerText = typeList === accessoriesList.newList ? "+" : "-";
 
-    const itemPrice = itemObjects[1];
-
-    let itemPriceObject = itemPrice.innerText.split(":")[1];
-
-    if (itemPriceObject.startsWith(" ")) {
-      itemPriceObject = itemPriceObject.slice(1);
-    }
-
-    const accessoriesObject = { name: itemNameObject, price: itemPriceObject };
-    createChoosenAccessoriesList(accessoriesObject);
-
-    let accList = accessoriesInstance.getAllAccessories();
-    console.log(accList);
-    let accListfiltered = accList.filter((x) => x.id != Number(idObject));
-    console.log(accListfiltered);
-
-    accessoriesInjection(accListfiltered);
+    li.appendChild(spanId);
+    li.appendChild(spanName);
+    li.appendChild(spanPrice);
+    li.appendChild(button);
+    ul.appendChild(li);
   });
+  return ul;
+}
+
+export function renderList(typeList) {
+  let accessoryList;
+  if (typeList == accessoriesList.newList) {
+    accessoryList = accessoriesInstance.getFilteredAccessories();
+  } else {
+    accessoryList = accessoriesInstance.getAllSelectedAccessproes();
+  }
+  const $parent = document.getElementById(
+    typeList === accessoriesList.newList ? "accessories" : "choosenAccessories"
+  );
+  const htmlList = renderHTMLList(accessoryList, typeList);
+  $parent.innerHTML = "";
+  $parent.appendChild(htmlList);
+}
+
+// export function createChoosenAccessoriesList(object) {
+//   let list = [];
+//   const ul = document.getElementById("choosenAccessories");
+//   let li = document.createElement("LI");
+//   let span = document.createElement("SPAN");
+//   span.innerText = `${object.name} - ${object.price}`;
+//   li.appendChild(span);
+//   ul.appendChild(li);
+//   list.push(object);
+// }
+
+function selectAccessory(htmlObject) {
+  htmlObject.addEventListener("click", (e) => {
+    const parentUl = e.target.closest(".flex");
+
+    if (e.target.tagName === "BUTTON") {
+      const itemObjects = parentUl.children;
+      const itemId = itemObjects[0];
+      const id = Number(itemId.innerText);
+
+      accessoriesInstance.addAccessory(id);
+      renderList(accessoriesList.newList);
+      renderList(accessoriesList.selectedList);
+    }
+  });
+}
+
+export function addAccessoryToNewList() {
+  const accessories = document.getElementById("accessories");
+  selectAccessory(accessories);
+}
+
+function removeAccessoryItem(htmlObject) {
+  htmlObject.addEventListener("click", (e) => {
+    const parentUl = e.target.closest(".flex");
+    if (e.target.tagName === "BUTTON") {
+      const itemObjects = parentUl.children;
+      const itemId = itemObjects[0];
+      const id = Number(itemId.innerText);
+      console.log(id);
+      accessoriesInstance.removeAccessory(id);
+      renderList(accessoriesList.newList);
+      renderList(accessoriesList.selectedList);
+    }
+  });
+}
+export function removeAccessoryItemFromList() {
+  const accessories = document.getElementById("choosenAccessories");
+  removeAccessoryItem(accessories);
 }
