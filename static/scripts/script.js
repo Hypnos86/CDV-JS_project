@@ -13,8 +13,18 @@ export const accessoriesList = {
   selectedList: "selectedList",
 };
 
-export function titlePage() {
-  document.title = "Drifter Shop";
+export function titlePage(text) {
+  document.title = text;
+}
+
+function showSnackbar(message) {
+  var snackbar = document.getElementById("snackbar");
+  snackbar.innerText = message;
+  snackbar.className = "show";
+  setTimeout(function () {
+    snackbar.classList.remove("show");
+    // snackbar.className = snackbar.className.replace("show", "");
+  }, 5000);
 }
 
 export function renderHTMLHeader() {
@@ -245,7 +255,6 @@ export function newCalendar() {
   for (const input of calendarInputs) {
     input.min = minDate;
     input.max = maxDate;
-    input.value = minDate;
   }
 }
 
@@ -306,6 +315,13 @@ export function renderList(typeList) {
 //   list.push(object);
 // }
 
+function injectionAccessoriesSum(sumValue) {
+  let span = document.getElementById("accessoriesSum");
+  span.innerText = `Kwota akesoriów brutto: ${sumValue.toLocaleString(
+    "pl-PL"
+  )} zł`;
+}
+
 function selectAccessory(htmlObject) {
   htmlObject.addEventListener("click", (e) => {
     const parentUl = e.target.closest(".flex");
@@ -318,14 +334,19 @@ function selectAccessory(htmlObject) {
       accessoriesInstance.addAccessory(id);
       renderList(accessoriesList.newList);
       renderList(accessoriesList.selectedList);
-      accessoriesInstance.getSumAccessoriesFromSelectedList();
+      const valueSum = accessoriesInstance.getSumAccessoriesFromSelectedList();
+      injectionAccessoriesSum(valueSum);
     }
   });
 }
 
 export function addAccessoryToNewList() {
-  const accessories = document.getElementById("accessories");
-  selectAccessory(accessories);
+  try {
+    const accessories = document.getElementById("accessories");
+    selectAccessory(accessories);
+  } catch (e) {
+    console.error(`addAccessoryToNewList: ${e}`);
+  }
 }
 
 function removeAccessoryItem(htmlObject) {
@@ -335,11 +356,13 @@ function removeAccessoryItem(htmlObject) {
       const itemObjects = parentUl.children;
       const itemId = itemObjects[0];
       const id = Number(itemId.innerText);
-      console.log(id);
+
       accessoriesInstance.removeAccessory(id);
       renderList(accessoriesList.newList);
       renderList(accessoriesList.selectedList);
-      accessoriesInstance.getSumAccessoriesFromSelectedList();
+
+      const valueSum = accessoriesInstance.getSumAccessoriesFromSelectedList();
+      injectionAccessoriesSum(valueSum);
     }
   });
 }
@@ -347,3 +370,134 @@ export function removeAccessoryItemFromList() {
   const accessories = document.getElementById("choosenAccessories");
   removeAccessoryItem(accessories);
 }
+
+// Walidowanie danych
+function showNoValidateHtmlElement(htmlObject) {
+  const existingSpan = htmlObject.querySelector(".no-valid");
+
+  if (!existingSpan) {
+    const span = document.createElement("SPAN");
+    span.innerText = "Uzupełnij";
+    span.classList.add("no-valid");
+    htmlObject.appendChild(span);
+  }
+}
+
+function showNoValidateHtmlRadiobutons(htmlObject) {
+  console.log(htmlObject);
+  if (htmlObject === null) {
+    const divTag = document.querySelector(".radio-list");
+    console.log(divTag);
+    const span = document.createElement("SPAN");
+    span.innerText = "Wybierz metodę finansowania";
+    span.classList.add("no-validate-radiobutton");
+    span.style.display = "block";
+    divTag.appendChild(span);
+  }
+}
+
+function hideNoValidateHtmlElement(htmlObject) {
+  const existingSpan = htmlObject.querySelector(".no-valid");
+
+  if (existingSpan) {
+    existingSpan.remove();
+  }
+}
+
+function hideNoValidateHtmlRadiobutons() {
+  const span = document.querySelector(".no-validate-radiobutton");
+  if (span) {
+    span.remove();
+  }
+}
+
+function validateNameAndSurname(nameAndSurname) {
+  return nameAndSurname.trim().split(" ").length >= 2;
+}
+
+function validateDeliveryPlace(deliveryPlace) {
+  return deliveryPlace.trim() !== "";
+}
+
+function validateDeliveryDate(deliveryDate) {
+  console.log(deliveryDate.value);
+  return deliveryDate.trim() !== "";
+}
+
+function validateRadioButtons(radiobutonsObject) {
+  let selectedRadiobutonValue = null;
+
+  radiobutonsObject.forEach((x) => {
+    if (x.checked) {
+      selectedRadiobutonValue = x.value;
+    }
+  });
+  return selectedRadiobutonValue;
+}
+
+// Pobieranie danych kllienta i walidacja
+function getClientValidationData() {
+  const allLiElements = document.querySelectorAll(".customer-data li");
+
+  const $nameAndSurname = document.getElementById("nameAndSurname");
+  const nameAndSurname = $nameAndSurname.value;
+
+  if (!validateNameAndSurname(nameAndSurname)) {
+    showNoValidateHtmlElement(allLiElements[0]);
+  } else {
+    hideNoValidateHtmlElement(allLiElements[0]);
+  }
+
+  const $deliveryPlace = document.getElementById("placeOfDelivery");
+  const deliveryPlace = $deliveryPlace.value;
+
+  if (!validateDeliveryPlace(deliveryPlace)) {
+    showNoValidateHtmlElement(allLiElements[1]);
+  } else {
+    hideNoValidateHtmlElement(allLiElements[1]);
+  }
+
+  const $deliveryDate = document.getElementById("dateOfDelivery");
+  const deliveryDate = $deliveryDate.value;
+
+  if (!validateDeliveryDate(deliveryDate)) {
+    showNoValidateHtmlElement(allLiElements[2]);
+  } else {
+    hideNoValidateHtmlElement(allLiElements[2]);
+  }
+
+  const $paymentMethod = document.querySelectorAll(
+    'input[type="radio"][name="finansing"]'
+  );
+
+  const radiobuttonObject = validateRadioButtons($paymentMethod);
+  if (!radiobuttonObject) {
+    showNoValidateHtmlRadiobutons(radiobuttonObject);
+  } else {
+    hideNoValidateHtmlRadiobutons();
+  }
+}
+
+export function buyingCar() {
+  const button = document.getElementById("acceptBuy");
+  button.addEventListener("click", () => {
+    const accessoryChoosenList =
+      accessoriesInstance.getAllSelectedAccessproes();
+    setToLocalSstorage(accessoriesLocalStorage, accessoryChoosenList);
+    const message =
+      "Gratulacje, własnie kupiłeś swoje auto \n Za chwile zostaniesz przekierowany do posumowania";
+    showSnackbar(message);
+
+    getClientValidationData();
+
+    // setTimeout(() => {
+    //   console.log("przeniesienie do strony");
+    //   console.log("2");
+    //   window.location.href = "summary.html";
+    // }, 6000);
+
+    console.log(accessoryChoosenList);
+  });
+}
+
+export function renderHTMLSummary() {}

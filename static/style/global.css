@@ -141,11 +141,18 @@ a {
 }
 
 :root {
+  --main-color1: #412653;
+  --main-color2: #3f567f;
+  --main-color3: #e0563f;
+  --main-color4: #d174d2;
+  --white: ghostwhite;
+
+  /* -------------------------- */
   --background-color: #c5aea01c;
   --header-color: #212529;
   --logo-color: #b30000;
   --green: #00b36f;
-  --white: ghostwhite;
+
   --yellow: #b38c00;
 }
 
@@ -169,12 +176,10 @@ main {
   padding: 0 30px;
 }
 
-#accessoriesLists{
+#accessoriesLists {
   /* min-height: 750px; */
   min-height: 80vb;
 }
-
-
 
 .hidden {
   display: none;
@@ -405,4 +410,26 @@ input {
 .btn:hover {
   border-radius: 25px;
   border: 1px solid var(--yellow);
+}
+
+#snackbar {
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  text-align: center;
+  line-height: 2;
+}
+
+#snackbar.show {
+  opacity: 1;
+  visibility: visible;
 }

@@ -10,8 +10,9 @@ import {
   renderList,
   addAccessoryToNewList,
   removeAccessoryItemFromList,
+  buyingCar,
 } from "./script.js";
-titlePage();
+titlePage("Drifter Shop");
 renderHTMLHeader();
 carInject();
 searchCar();
@@ -21,3 +22,4 @@ newCalendar();
 renderList(accessoriesList.newList);
 addAccessoryToNewList();
 removeAccessoryItemFromList();
+buyingCar();
