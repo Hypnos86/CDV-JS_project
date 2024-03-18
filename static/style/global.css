@@ -170,7 +170,8 @@ main {
 }
 
 #accessoriesLists{
-  height: 80vh;
+  /* min-height: 750px; */
+  min-height: 80vb;
 }
 
 

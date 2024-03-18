@@ -38,6 +38,23 @@ export class Accessories {
     return this.selectedList;
   }
 
+  getSumAccessoriesFromSelectedList() {
+    let accessoriesSum = [];
+    this.selectedList.forEach((x) => {
+      accessoriesSum.push(Number(x.price));
+    });
+
+    console.log(accessoriesSum);
+
+    let valueOfSum = accessoriesSum.reduce((acc, currentValue) => {
+      return acc + currentValue;
+    }, 0);
+
+    console.log(valueOfSum)
+
+    return valueOfSum;
+  }
+
   getFilteredAccessories() {
     return this.list.filter((x) => {
       return this.selectedList.indexOf(x) === -1;

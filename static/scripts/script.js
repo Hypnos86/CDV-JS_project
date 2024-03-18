@@ -205,7 +205,7 @@ export function choosenCar() {
         storage[meta] = car;
       }
       // do zmiany metoda
-      inputCarDataFromLocalStorage()
+      inputCarDataFromLocalStorage();
 
       setToLocalSstorage(carLocalStorage, storage);
 
@@ -318,6 +318,7 @@ function selectAccessory(htmlObject) {
       accessoriesInstance.addAccessory(id);
       renderList(accessoriesList.newList);
       renderList(accessoriesList.selectedList);
+      accessoriesInstance.getSumAccessoriesFromSelectedList();
     }
   });
 }
@@ -338,6 +339,7 @@ function removeAccessoryItem(htmlObject) {
       accessoriesInstance.removeAccessory(id);
       renderList(accessoriesList.newList);
       renderList(accessoriesList.selectedList);
+      accessoriesInstance.getSumAccessoriesFromSelectedList();
     }
   });
 }
