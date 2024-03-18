@@ -1,22 +1,23 @@
 import { Cars } from "./cars.js";
 import { Accessories } from "./accessories.js";
 
+// Obiekty statyczne
 const carsInstance = new Cars();
 const carLocalStorage = "buyCar";
 const accessoriesInstance = new Accessories();
 const accessoriesLocalStorage = "buyAccessories";
+
+// ENUM dla list akcesoriów
 export const accessoriesList = {
   newList: "newList",
   selectedList: "selectedList",
 };
 
-const selectedList = "selectedList";
-
 export function titlePage() {
   document.title = "Drifter Shop";
 }
 
-export function menu() {
+export function renderHTMLHeader() {
   const $body = document.querySelector("body");
   const $header = document.createElement("header");
   $header.classList.add("header-color");
@@ -35,23 +36,27 @@ export function menu() {
 }
 
 function setToLocalSstorage(nameList, storageObject) {
-  localStorage.setItem(nameList, JSON.stringify(storageObject));
+  try {
+    localStorage.setItem(nameList, JSON.stringify(storageObject));
+  } catch (e) {
+    console.error(`setToLocalSstorage ${e}`);
+  }
 }
 
 function getFromLocaStorage(nameList) {
-  let carItem = JSON.parse(localStorage.getItem(nameList));
-  return carItem;
+  try {
+    const items = JSON.parse(localStorage.getItem(nameList));
+    return items;
+  } catch (e) {
+    console.error(`getFromLocaStorage: ${e}`);
+  }
 }
 
-export function carInject(cars = null) {
-  if (cars === null) {
-    cars = carsInstance.getAllCars();
-  }
-
+function renderHTMLCarsList(CarsList) {
   const ul = document.getElementById("cars");
   ul.style.width = "60%";
 
-  cars.forEach((car) => {
+  CarsList.forEach((car) => {
     let li = document.createElement("LI");
     li.classList.add("flex");
 
@@ -121,40 +126,56 @@ export function carInject(cars = null) {
   });
 }
 
-export function searchCar() {
-  const searchInput = document.getElementById("search");
-  searchInput.addEventListener("input", (e) => {
-    const searchBrand = e.target.value.toLowerCase().trim();
-
-    const cars = carsInstance.getAllCars();
-    const filteredList = cars.filter((x) =>
-      x.brand.toLowerCase().startsWith(searchBrand)
-    );
-    const ul = document.getElementById("cars");
-    ul.innerHTML = "";
-    if (filteredList.length != 0) {
-      carInject(filteredList);
-    } else {
+function renderHTMLSearchCar(htmlObject) {
+  try {
+    htmlObject.addEventListener("input", (e) => {
+      const searchBrand = e.target.value.toLowerCase().trim();
+      const cars = carsInstance.getAllCars();
+      const filteredList = cars.filter((x) =>
+        x.brand.toLowerCase().startsWith(searchBrand)
+      );
       const ul = document.getElementById("cars");
-      ul.style.width = "100%";
+      ul.innerHTML = "";
 
-      const li = document.createElement("LI");
-      li.style.border = "none";
-      li.style.borderRadius = 0;
+      if (filteredList.length != 0) {
+        carInject(filteredList);
+      } else {
+        const ul = document.getElementById("cars");
+        ul.style.width = "100%";
 
-      const div = document.createElement("DIV");
-      div.classList.add("empty");
+        const li = document.createElement("LI");
+        li.style.border = "none";
+        li.style.borderRadius = 0;
 
-      const p = document.createElement("P");
-      p.innerText = "Nie znalazłeś swojej marki? \n Skonaktuj się z nami!";
+        const div = document.createElement("DIV");
+        div.classList.add("empty");
 
-      div.appendChild(p);
-      li.appendChild(div);
-      ul.appendChild(li);
-    }
-  });
+        const p = document.createElement("P");
+        p.innerText = "Nie znalazłeś swojej marki? \n Skonaktuj się z nami!";
+
+        div.appendChild(p);
+        li.appendChild(div);
+        ul.appendChild(li);
+      }
+    });
+  } catch (e) {
+    console.error(`renderHTMLSearchCar: ${e}`);
+  }
 }
-export function iputCarDataFromLocalStorage() {
+
+export function searchCar() {
+  const $searchInput = document.getElementById("search");
+  renderHTMLSearchCar($searchInput);
+}
+
+export function carInject(cars = null) {
+  if (cars === null) {
+    cars = carsInstance.getAllCars();
+  }
+  renderHTMLCarsList(cars);
+}
+
+export function inputCarDataFromLocalStorage() {
   let data = getFromLocaStorage(carLocalStorage);
   if (data) {
     let $price = document.getElementById("price");
@@ -183,11 +204,13 @@ export function choosenCar() {
         }
         storage[meta] = car;
       }
+      // do zmiany metoda
+      inputCarDataFromLocalStorage()
+
       setToLocalSstorage(carLocalStorage, storage);
 
       $mainTag.classList.toggle("hidden");
       $customize.classList.toggle("hidden");
-      iputCarDataFromLocalStorage();
     }
   });
 }
@@ -226,7 +249,7 @@ export function newCalendar() {
   }
 }
 
-function renderHTMLList(accessoryList, typeList) {
+function renderHTMLAccessoryList(accessoryList, typeList) {
   const ul = document.createElement("ul");
 
   accessoryList.forEach((x) => {
@@ -267,7 +290,7 @@ export function renderList(typeList) {
   const $parent = document.getElementById(
     typeList === accessoriesList.newList ? "accessories" : "choosenAccessories"
   );
-  const htmlList = renderHTMLList(accessoryList, typeList);
+  const htmlList = renderHTMLAccessoryList(accessoryList, typeList);
   $parent.innerHTML = "";
   $parent.appendChild(htmlList);
 }

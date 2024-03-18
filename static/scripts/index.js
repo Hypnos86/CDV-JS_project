@@ -1,25 +1,23 @@
 import {
   accessoriesList,
-  menu,
+  renderHTMLHeader,
   titlePage,
   carInject,
   searchCar,
   choosenCar,
   cancelChoose,
   newCalendar,
-  iputCarDataFromLocalStorage,
   renderList,
   addAccessoryToNewList,
   removeAccessoryItemFromList,
 } from "./script.js";
 titlePage();
-menu();
+renderHTMLHeader();
 carInject();
 searchCar();
 choosenCar();
 cancelChoose();
 newCalendar();
-iputCarDataFromLocalStorage();
 renderList(accessoriesList.newList);
 addAccessoryToNewList();
 removeAccessoryItemFromList();
