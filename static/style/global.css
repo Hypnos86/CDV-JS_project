@@ -148,11 +148,10 @@ a {
   --white: ghostwhite;
 
   /* -------------------------- */
-  --background-color: #c5aea01c;
+  --background-color: #0f0703d0;
   --header-color: #212529;
   --logo-color: #b30000;
   --green: #00b36f;
-
   --yellow: #b38c00;
 }
 
@@ -166,10 +165,19 @@ html {
 }
 
 body {
-  background-color: var(--background-color);
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(
+    to top right,
+    var(--main-color2),
+    var(--main-color1),
+    var(--main-color3)
+  );
+
   height: 100vh;
+  font-size: 16px;
+  color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 main {
@@ -235,10 +243,10 @@ header {
 
 header img {
   background-color: var(--logo-color);
-  max-width: 150px;
+  max-width: 130px;
   height: auto;
   border-radius: 80% 40px;
-  margin: 10px;
+  margin: 8px;
   margin-left: 50px;
   border: 3px solid var(--header-color);
 
@@ -247,7 +255,7 @@ header img {
 
 header h1 {
   padding: 0;
-  margin-block-start: 1em;
+  margin-block-start: 0.5em;
   margin-block-end: 0.5em;
   color: var(--logo-color);
   font-family: "nfs", sans-serif;

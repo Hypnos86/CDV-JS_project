@@ -1,3 +1,4 @@
-import { titlePage, renderHTMLSummary } from "./script.js";
+import { titlePage, renderHTMLHeader, renderHTMLSummary } from "./script.js";
 titlePage("Drifter Shop - Podsumowanie");
+renderHTMLHeader();
 renderHTMLSummary();

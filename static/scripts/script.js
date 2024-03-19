@@ -6,7 +6,7 @@ const carsInstance = new Cars();
 const carLocalStorage = "buyCar";
 const accessoriesInstance = new Accessories();
 const accessoriesLocalStorage = "buyAccessories";
-
+const clientLocalStorage = "client";
 // ENUM dla list akcesoriów
 export const accessoriesList = {
   newList: "newList",
@@ -64,11 +64,11 @@ function getFromLocaStorage(nameList) {
 
 function renderHTMLCarsList(CarsList) {
   const ul = document.getElementById("cars");
-  ul.style.width = "60%";
+  ul.style.width = "70%";
 
   CarsList.forEach((car) => {
     let li = document.createElement("LI");
-    li.classList.add("flex");
+    li.classList.add("flex", "wrap");
 
     let photoDiv = document.createElement("DIV");
     photoDiv.classList.add("car-photo", "flex");
@@ -79,6 +79,7 @@ function renderHTMLCarsList(CarsList) {
     let infoDiv = document.createElement("DIV");
     infoDiv.classList.add("car-info");
     let infoUl = document.createElement("UL");
+    infoUl.setAttribute("data-id", car.id);
 
     let infoBrand = document.createElement("LI");
     let brand = document.createElement("SPAN");
@@ -190,8 +191,8 @@ export function inputCarDataFromLocalStorage() {
   if (data) {
     let $price = document.getElementById("price");
     let $model = document.getElementById("modelCar");
-    $price.innerText = data["cena"];
-    $model.innerText = `${data["marka"]} ${data["model"]}`;
+    $price.innerText = `${parseFloat(data.price).toLocaleString("pl-PL")} zł`;
+    $model.innerText = `${data.brand} ${data.model}`;
   }
 }
 
@@ -202,29 +203,18 @@ export function choosenCar() {
   $ulCars.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON") {
       let parentDiv = e.target.closest(".car-info");
+      const carId = parentDiv.children[0].dataset.id;
+      const cars = carsInstance.getAllCars();
+      const choosenCar = cars.find((x) => x.id === Number(carId));
 
-      let storage = {};
-
-      for (const child of parentDiv.children[0].children) {
-        const meta = child.innerText.split(":")[0].toLowerCase().trim();
-        let car = child.innerText.split(":")[1];
-
-        if (car.startsWith(" ")) {
-          car = car.slice(1);
-        }
-        storage[meta] = car;
-      }
-      // do zmiany metoda
+      setToLocalSstorage(carLocalStorage, choosenCar);
       inputCarDataFromLocalStorage();
-
-      setToLocalSstorage(carLocalStorage, storage);
-
       $mainTag.classList.toggle("hidden");
       $customize.classList.toggle("hidden");
     }
   });
 }
-
+// ----2 page----------------------------
 export function cancelChoose() {
   const $btn = document.getElementById("cancel");
   const $mainTag = document.getElementById("main");
@@ -384,10 +374,10 @@ function showNoValidateHtmlElement(htmlObject) {
 }
 
 function showNoValidateHtmlRadiobutons(htmlObject) {
-  console.log(htmlObject);
-  if (htmlObject === null) {
+  const spanclass = document.querySelector(".no-validate-radiobutton");
+
+  if (htmlObject === null && !spanclass) {
     const divTag = document.querySelector(".radio-list");
-    console.log(divTag);
     const span = document.createElement("SPAN");
     span.innerText = "Wybierz metodę finansowania";
     span.classList.add("no-validate-radiobutton");
@@ -398,7 +388,6 @@ function showNoValidateHtmlRadiobutons(htmlObject) {
 
 function hideNoValidateHtmlElement(htmlObject) {
   const existingSpan = htmlObject.querySelector(".no-valid");
-
   if (existingSpan) {
     existingSpan.remove();
   }
@@ -410,18 +399,38 @@ function hideNoValidateHtmlRadiobutons() {
     span.remove();
   }
 }
-
+// function validate name i surname
 function validateNameAndSurname(nameAndSurname) {
-  return nameAndSurname.trim().split(" ").length >= 2;
+  const allLiElements = document.querySelectorAll(".customer-data li");
+  const input = nameAndSurname.trim().split(" ").length >= 2;
+  if (!input) {
+    showNoValidateHtmlElement(allLiElements[0]);
+  } else {
+    hideNoValidateHtmlElement(allLiElements[0]);
+  }
+  return input;
 }
-
+// function validate delivery place
 function validateDeliveryPlace(deliveryPlace) {
-  return deliveryPlace.trim() !== "";
+  const allLiElements = document.querySelectorAll(".customer-data li");
+  const input = deliveryPlace.trim() !== "";
+  if (!input) {
+    showNoValidateHtmlElement(allLiElements[1]);
+  } else {
+    hideNoValidateHtmlElement(allLiElements[1]);
+  }
+  return input;
 }
 
 function validateDeliveryDate(deliveryDate) {
-  console.log(deliveryDate.value);
-  return deliveryDate.trim() !== "";
+  const allLiElements = document.querySelectorAll(".customer-data li");
+  const dateInput = deliveryDate.trim() !== "";
+  if (!dateInput) {
+    showNoValidateHtmlElement(allLiElements[2]);
+  } else {
+    hideNoValidateHtmlElement(allLiElements[2]);
+  }
+  return dateInput;
 }
 
 function validateRadioButtons(radiobutonsObject) {
@@ -432,49 +441,56 @@ function validateRadioButtons(radiobutonsObject) {
       selectedRadiobutonValue = x.value;
     }
   });
-  return selectedRadiobutonValue;
+
+  if (!selectedRadiobutonValue) {
+    showNoValidateHtmlRadiobutons(selectedRadiobutonValue);
+    return { isvalidate: false, content: selectedRadiobutonValue };
+  } else {
+    hideNoValidateHtmlRadiobutons();
+    return { isvalidate: true, content: selectedRadiobutonValue };
+  }
 }
 
 // Pobieranie danych kllienta i walidacja
 function getClientValidationData() {
-  const allLiElements = document.querySelectorAll(".customer-data li");
-
+  // Validate name and surname
   const $nameAndSurname = document.getElementById("nameAndSurname");
   const nameAndSurname = $nameAndSurname.value;
-
-  if (!validateNameAndSurname(nameAndSurname)) {
-    showNoValidateHtmlElement(allLiElements[0]);
-  } else {
-    hideNoValidateHtmlElement(allLiElements[0]);
-  }
-
+  const validateInputNameAndSurname = validateNameAndSurname(nameAndSurname);
+  console.log(validateInputNameAndSurname);
+  // Validate delivery place
   const $deliveryPlace = document.getElementById("placeOfDelivery");
   const deliveryPlace = $deliveryPlace.value;
-
-  if (!validateDeliveryPlace(deliveryPlace)) {
-    showNoValidateHtmlElement(allLiElements[1]);
-  } else {
-    hideNoValidateHtmlElement(allLiElements[1]);
-  }
-
+  const validateInputDeliveryPlace = validateDeliveryPlace(deliveryPlace);
+  console.log(validateInputDeliveryPlace);
+  // Validate delivery date
   const $deliveryDate = document.getElementById("dateOfDelivery");
   const deliveryDate = $deliveryDate.value;
-
-  if (!validateDeliveryDate(deliveryDate)) {
-    showNoValidateHtmlElement(allLiElements[2]);
-  } else {
-    hideNoValidateHtmlElement(allLiElements[2]);
-  }
-
+  const validateInputDeliveryDate = validateDeliveryDate(deliveryDate);
+  console.log(validateInputDeliveryDate);
+  // Validate radiobuton
   const $paymentMethod = document.querySelectorAll(
     'input[type="radio"][name="finansing"]'
   );
-
   const radiobuttonObject = validateRadioButtons($paymentMethod);
-  if (!radiobuttonObject) {
-    showNoValidateHtmlRadiobutons(radiobuttonObject);
+  console.log(radiobuttonObject.isvalidate);
+
+  if (
+    validateInputNameAndSurname &&
+    validateInputDeliveryPlace &&
+    validateInputDeliveryDate &&
+    radiobuttonObject.isvalidate
+  ) {
+    const clientObject = {
+      name: nameAndSurname,
+      deliveryPlace: deliveryPlace,
+      deliveryDate: deliveryDate,
+      financing: radiobuttonObject.content,
+    };
+    setToLocalSstorage(clientLocalStorage, clientObject);
+    return true;
   } else {
-    hideNoValidateHtmlRadiobutons();
+    return false;
   }
 }
 
@@ -486,17 +502,19 @@ export function buyingCar() {
     setToLocalSstorage(accessoriesLocalStorage, accessoryChoosenList);
     const message =
       "Gratulacje, własnie kupiłeś swoje auto \n Za chwile zostaniesz przekierowany do posumowania";
-    showSnackbar(message);
 
-    getClientValidationData();
-
-    // setTimeout(() => {
-    //   console.log("przeniesienie do strony");
-    //   console.log("2");
-    //   window.location.href = "summary.html";
-    // }, 6000);
-
-    console.log(accessoryChoosenList);
+    const isvalidate = getClientValidationData();
+    if (isvalidate) {
+      showSnackbar(message);
+      setTimeout(() => {
+        console.log("przeniesienie do strony");
+        console.log("2");
+        window.location.href = "summary.html";
+      }, 6000);
+    } else {
+      const message = "Uzupełnij brakujce dane";
+      showSnackbar(message);
+    }
   });
 }
 
