@@ -44,13 +44,9 @@ export class Accessories {
       accessoriesSum.push(Number(x.price));
     });
 
-    console.log(accessoriesSum);
-
     let valueOfSum = accessoriesSum.reduce((acc, currentValue) => {
       return acc + currentValue;
     }, 0);
-
-    console.log(valueOfSum)
 
     return valueOfSum;
   }
@@ -60,12 +56,6 @@ export class Accessories {
       return this.selectedList.indexOf(x) === -1;
     });
   }
-
-  // getFilteredAccessories() {
-  //   return this.list.filter(
-  //     (x) => !this.selectedList.some((item) => item.id === x.id)
-  //   );
-  // }
 
   addAccessory(id) {
     const item = this.getAllAccessories().find((x) => {

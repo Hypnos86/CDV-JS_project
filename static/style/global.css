@@ -177,8 +177,7 @@ main {
 }
 
 #accessoriesLists {
-  /* min-height: 750px; */
-  min-height: 80vb;
+  min-height: 65vb;
 }
 
 .hidden {

@@ -81,10 +81,13 @@
 
 .choosenCar {
   width: 20%;
+  align-self: center;
 }
 
-.finance div {
+fieldset {
   margin: 40px 20px;
+  padding: 10px;
+  border: 1px solid whitesmoke;
 }
 
 .customer-data ul {
@@ -108,9 +111,9 @@
 }
 
 .accessories-list li {
-  padding: 5px;
+  padding: 2px 5px;
   width: inherit;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .accessories-list li::before {
