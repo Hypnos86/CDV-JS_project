@@ -132,7 +132,6 @@ table {
 /* Zresetowanie elementu a do stanu domyślnego */
 a {
   text-decoration: none;
-  color: inherit;
 }
 
 /* Reszta stylizacji według potrzeb */
@@ -443,10 +442,37 @@ input {
   visibility: visible;
 }
 
-
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 300px) and (max-width: 375px) {
   header img {
-    width: 80px; /* Dostosowanie obrazu do szerokości ekranu na urządzeniach o szerokości do 768 pikseli */
+    background-color: var(--logo-color);
+    width: 80px;
+    /* max-width: 80%; */
     height: auto;
+    border-radius: 80% 40px;
+    margin: 8px;
+    margin-left: 5px;
+    border: 3px solid var(--header-color);
+
+    background-image: linear-gradient(to top, var(--logo-color), var(--yellow));
+  }
+  .header-color h1 {
+    font-size: 10px;
+  }
+  header h1 {
+    padding: 0;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    color: var(--logo-color);
+    font-family: "nfs", sans-serif;
+    font-size: 5px;
+  }
+
+  header h1::first-letter {
+    color: #cacac8;
+    font-size: 1rem;
+  }
+  .contact-baner {
+    font-size: 10px;
+    margin-right: 5px;
   }
 }

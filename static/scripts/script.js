@@ -71,7 +71,7 @@ function renderHTMLCarsList(CarsList) {
     li.classList.add("flex", "wrap");
 
     let photoDiv = document.createElement("DIV");
-    photoDiv.classList.add("car-photo", "flex");
+    photoDiv.classList.add("car-photo");
     let img = document.createElement("IMG");
     img.src = `./static/assets/cars/${car.image}`;
     photoDiv.appendChild(img);
