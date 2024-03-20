@@ -23,20 +23,23 @@
 }
 
 .car-photo {
-  align-items: center;
+  align-self: center;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .car-photo img {
   /* width: 400px; */
-  width: 400px; /* Ustawienie stałej szerokości */
+  width: 450px; /* Ustawienie stałej szerokości */
   height: 220px; /* Ustawienie stałej wysokości */
   max-width: 90%; /* Obraz nie będzie szerszy niż jego kontener */
   height: auto; /* Zapobiega zniekształceniu proporcji obrazu */
   /* flex: 1 1 auto; */
   height: auto;
   border-radius: 10px;
-  margin: 15px;
-  box-shadow: 3px 4px 50px 0 var(--main-color4) ;
+  box-shadow: 3px 4px 50px 0 var(--main-color4);
+  justify-self: center;
 }
 
 .car-info {
@@ -76,15 +79,41 @@
 }
 
 .btn-choose {
-  width: 220px;
-  margin: 20px 0;
+  color: var(--main-color1);
+  font-weight: 800;
+  width: 150px;
+  max-width: 80%;
+  margin-top: 15px;
+  margin-bottom: 10px;
   padding: 5px 10px;
+  transition: transform 0.3s;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: linear-gradient(
+    to top left,
+    var(--main-color3),
+    var(--white),
+    var(--main-color3)
+  );
+}
+
+.btn-choose:hover {
+  transform: scale(1.1);
+  background: linear-gradient(
+    to top left,
+    var(--white),
+    var(--main-color3),
+    var(--white)
+  );
+  border: 1px solid var(--main-color5);
+  box-shadow: 0px 0px 15px 5px var(--main-color3);
+  cursor: pointer;
 }
 
 #customize {
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
-  background-color: rgba(8, 92, 92, 0.575);
+  background-color: #11656649;
 }
 
 .choosenCar {
@@ -125,7 +154,7 @@ fieldset {
 }
 
 .accessories-list li::before {
-  content: counter(list-counter) "."; 
+  content: counter(list-counter) ".";
   counter-increment: list-counter;
   width: 30px;
 }

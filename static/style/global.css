@@ -140,16 +140,17 @@ a {
 }
 
 :root {
-  --main-color1: #412653;
-  --main-color2: #3f567f;
-  --main-color3: #e0563f;
-  --main-color4: #d174d2;
+  --main-color1: #2C3531;
+  --main-color2: #116466;
+  --main-color3: #D9B08C;
+  --main-color4: #FFCB9A;
+  --main-color5: #D1E8E2;
   --white: ghostwhite;
 
   /* -------------------------- */
   --background-color: #0f0703d0;
   --header-color: #212529;
-  --logo-color: #b30000;
+  --logo-color: #c90606;
   --green: #00b36f;
   --yellow: #b38c00;
 }
@@ -168,7 +169,8 @@ body {
     to top right,
     var(--main-color2),
     var(--main-color1),
-    var(--main-color3)
+    var(--main-color1),
+    var(--main-color4)
   );
 
   height: 100vh;
@@ -177,6 +179,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-size: cover;
   background-attachment: fixed;
+  filter: saturate(0.7);
 }
 
 main {
@@ -409,6 +412,10 @@ li svg {
   background-color: transparent;
   border: none;
   border-bottom: 2px solid var(--logo-color);
+}
+
+#search::placeholder{
+  color: gainsboro;
 }
 
 input {

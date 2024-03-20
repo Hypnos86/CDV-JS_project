@@ -73,7 +73,7 @@ function renderHTMLCarsList(CarsList) {
     let photoDiv = document.createElement("DIV");
     photoDiv.classList.add("car-photo");
     let img = document.createElement("IMG");
-    img.src = `./static/assets/cars/${car.image}`;
+    img.src = `./static/assets/cars/${car.image[0]}`;
     photoDiv.appendChild(img);
 
     let infoDiv = document.createElement("DIV");
@@ -120,6 +120,7 @@ function renderHTMLCarsList(CarsList) {
     infoUl.appendChild(infoPrice);
 
     let description = document.createElement("P");
+    description.setAttribute("overflow", "auto");
     description.innerText = car.shortDescription;
 
     let button = document.createElement("BUTTON");
@@ -211,6 +212,10 @@ export function choosenCar() {
       inputCarDataFromLocalStorage();
       $mainTag.classList.toggle("hidden");
       $customize.classList.toggle("hidden");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   });
 }
@@ -226,6 +231,10 @@ export function cancelChoose() {
     accessoriesInstance.removeAllSelectedList();
     renderList(accessoriesList.newList);
     renderList(accessoriesList.selectedList);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   });
 }
 

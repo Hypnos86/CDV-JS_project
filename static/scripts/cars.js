@@ -4,7 +4,7 @@ export class Cars {
       {
         id: 1,
         price: 120000,
-        image: "toyota-corolla.jpg",
+        image: ["toyota-corolla.jpg", "toyota-corolla2.jpg"],
         brand: "Toyota",
         year: 2018,
         model: "Corolla",
@@ -17,7 +17,7 @@ export class Cars {
       {
         id: 2,
         price: 250000,
-        image: "bmw_5series.jpg",
+        image: ["bmw_5series.jpg", "bmw_5series2.jpg"],
         brand: "BMW",
         year: 2020,
         model: "5 Series",
@@ -30,7 +30,7 @@ export class Cars {
       {
         id: 3,
         price: 150000,
-        image: "volkswagen_golf.jpg",
+        image: ["volkswagen_golf.jpg", "volkswagen_golf2.jpg"],
         brand: "Volkswagen",
         year: 2019,
         model: "Golf",
@@ -43,7 +43,7 @@ export class Cars {
       {
         id: 4,
         price: 300000,
-        image: "mercedes_eclass.jpg",
+        image: ["mercedes_eclass.jpg", "mercedes_eclass2.jpg"],
         brand: "Mercedes-Benz",
         year: 2021,
         model: "E-Class",
@@ -56,7 +56,7 @@ export class Cars {
       {
         id: 5,
         price: 140000,
-        image: "ford_focus.jpg",
+        image: ["ford_focus.jpg", "ford_focus2.jpg"],
         brand: "Ford",
         year: 2017,
         model: "Focus",
@@ -69,7 +69,7 @@ export class Cars {
       {
         id: 6,
         price: 200000,
-        image: "audi_a4.jpg",
+        image: ["audi_a4.jpg", "audi_a42.jpg"],
         brand: "Audi",
         year: 2020,
         model: "A4",
@@ -82,7 +82,7 @@ export class Cars {
       {
         id: 7,
         price: 130000,
-        image: "honda_civic.jpg",
+        image: ["honda_civic.jpg", "honda_civic2.jpg"],
         brand: "Honda",
         year: 2019,
         model: "Civic",
@@ -95,7 +95,7 @@ export class Cars {
       {
         id: 8,
         price: 270000,
-        image: "volvo_xc90.jpg",
+        image: ["volvo_xc90.jpg", "volvo_xc902.jpg"],
         brand: "Volvo",
         year: 2021,
         model: "XC90",
@@ -108,7 +108,7 @@ export class Cars {
       {
         id: 9,
         price: 160000,
-        image: "subaru_outback.jpg",
+        image: ["subaru_outback.jpg", "subaru_outback2.jpg"],
         brand: "Subaru",
         year: 2020,
         model: "Outback",
@@ -121,7 +121,7 @@ export class Cars {
       {
         id: 10,
         price: 350000,
-        image: "tesla_modelS.jpg",
+        image: ["tesla_modelS.jpg", "tesla_modelS2.jpg", "tesla_modelS3.jpg"],
         brand: "Tesla",
         year: 2022,
         model: "Model S",
@@ -132,9 +132,9 @@ export class Cars {
           "Innowacyjny sedan z napędem elektrycznym, oferujący doskonałe osiągi i długą autonomię.",
       },
       {
-        id: 1,
+        id: 11,
         price: 110000,
-        image: "nissan_qashqai.jpg",
+        image: ["nissan_qashqai.jpg", "nissan_qashqai2.jpg"],
         brand: "Nissan",
         year: 2018,
         model: "Qashqai",
@@ -147,7 +147,7 @@ export class Cars {
       {
         id: 12,
         price: 100000,
-        image: "kia_sportage.jpg",
+        image: ["kia_sportage.jpg", "kia_sportage2.jpg"],
         brand: "Kia",
         year: 2019,
         model: "Sportage",
@@ -160,7 +160,7 @@ export class Cars {
       {
         id: 13,
         price: 90000,
-        image: "fiat_500.jpg",
+        image: ["fiat_500.jpg", "fiat_5002.jpg"],
         brand: "Fiat",
         year: 2018,
         model: "500",
@@ -173,7 +173,7 @@ export class Cars {
       {
         id: 14,
         price: 220000,
-        image: "lexus_is.jpg",
+        image: ["lexus_is.jpg", "lexus_is2.jpg"],
         brand: "Lexus",
         year: 2020,
         model: "IS",
@@ -186,7 +186,7 @@ export class Cars {
       {
         id: 15,
         price: 85000,
-        image: "lancia_delta.jpg",
+        image: ["lancia_delta.jpg", "lancia_delta2.jpg"],
         brand: "Lancia",
         year: 2019,
         model: "Delta",
@@ -199,7 +199,7 @@ export class Cars {
       {
         id: 16,
         price: 75000,
-        image: "lancia_thema.jpg",
+        image: ["lancia_thema.jpg", "lancia_thema2.jpg"],
         brand: "Lancia",
         year: 2018,
         model: "Thema",
@@ -212,7 +212,7 @@ export class Cars {
       {
         id: 17,
         price: 90000,
-        image: "lancia_voyager.jpg",
+        image: ["lancia_voyager.jpg", "lancia_voyager2.jpg"],
         brand: "Lancia",
         year: 2020,
         model: "Voyager",
@@ -225,7 +225,7 @@ export class Cars {
       {
         id: 18,
         price: 65000,
-        image: "lancia_ypsilon.jpg",
+        image: ["lancia_ypsilon.jpg", "lancia_ypsilon2.jpg"],
         brand: "Lancia",
         year: 2017,
         model: "Ypsilon",
@@ -238,7 +238,7 @@ export class Cars {
       {
         id: 19,
         price: 82000,
-        image: "lancia_thesis.jpg",
+        image: ["lancia_thesis.jpg", "lancia_thesis2.jpg"],
         brand: "Lancia",
         year: 2016,
         model: "Thesis",
@@ -251,7 +251,7 @@ export class Cars {
       {
         id: 20,
         price: 78000,
-        image: "lancia_musa.jpg",
+        image: ["lancia_musa.jpg", "lancia_musa2.jpg"],
         brand: "Lancia",
         year: 2015,
         model: "Musa",
@@ -264,7 +264,7 @@ export class Cars {
       {
         id: 21,
         price: 92000,
-        image: "lancia_flavia.jpg",
+        image: ["lancia_flavia.jpg", "lancia_flavia2.jpg"],
         brand: "Lancia",
         year: 2021,
         model: "Flavia",
@@ -277,7 +277,7 @@ export class Cars {
       {
         id: 22,
         price: 70000,
-        image: "lancia_dedra.jpg",
+        image: ["lancia_dedra.jpg", "lancia_dedra2.jpg"],
         brand: "Lancia",
         year: 2019,
         model: "Dedra",
@@ -290,7 +290,7 @@ export class Cars {
       {
         id: 23,
         price: 88000,
-        image: "lancia_themav.jpg",
+        image: ["lancia_themav.jpg", "lancia_themav2.jpg"],
         brand: "Lancia",
         year: 2017,
         model: "Thema",
@@ -303,7 +303,7 @@ export class Cars {
       {
         id: 24,
         price: 75000,
-        image: "lancia_phedra.jpg",
+        image: ["lancia_phedra.jpg", "lancia_phedra2.jpg"],
         brand: "Lancia",
         year: 2018,
         model: "Phedra",
