@@ -27,10 +27,16 @@
 }
 
 .car-photo img {
-  width: 400px;
+  /* width: 400px; */
+  width: 400px; /* Ustawienie stałej szerokości */
+  height: 220px; /* Ustawienie stałej wysokości */
+  max-width: 90%; /* Obraz nie będzie szerszy niż jego kontener */
+  height: auto; /* Zapobiega zniekształceniu proporcji obrazu */
+  /* flex: 1 1 auto; */
   height: auto;
   border-radius: 10px;
   margin: 15px;
+  box-shadow: 3px 4px 50px 0 var(--main-color4) ;
 }
 
 .car-info {

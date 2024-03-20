@@ -243,7 +243,9 @@ header {
 
 header img {
   background-color: var(--logo-color);
-  max-width: 130px;
+  width: 130px;
+  height: 100px;
+  max-width: 80%;
   height: auto;
   border-radius: 80% 40px;
   margin: 8px;
@@ -439,4 +441,12 @@ input {
 #snackbar.show {
   opacity: 1;
   visibility: visible;
+}
+
+
+@media screen and (max-width: 320px) {
+  header img {
+    width: 80px; /* Dostosowanie obrazu do szerokości ekranu na urządzeniach o szerokości do 768 pikseli */
+    height: auto;
+  }
 }
