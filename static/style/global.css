@@ -411,7 +411,7 @@ li svg {
 #search {
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid var(--logo-color);
+  border-bottom: 2px solid var(--main-color4);
 }
 
 #search::placeholder{

@@ -157,11 +157,13 @@ fieldset {
   content: counter(list-counter) ".";
   counter-increment: list-counter;
   width: 30px;
+ 
 }
 
 .accessories-list li:hover {
-  background-color: bisque;
+  background-color: var(--main-color5);
   border-radius: 10px;
+  color: var(--main-color1);
   button {
     display: block;
   }
@@ -169,18 +171,22 @@ fieldset {
 
 .accessories-name {
   min-width: 300px;
+  padding: 2px;
+  
 }
 
 .accessories-price {
   min-width: 85px;
+  padding: 2px;
 }
 
 .accessories-list button {
-  border: 1px solid red;
+  border: 1px solid var(--main-color2);
   border-radius: 25px;
   cursor: pointer;
   display: none;
   padding: 2px 8px;
+  font-weight: 800;
 }
 
 .cancelAndBuyButton {
@@ -189,4 +195,31 @@ fieldset {
 
 .accessories-title {
   text-align: center;
+}
+
+label {
+  padding: 5px;
+}
+
+.input {
+  width: 180px;
+  border: 0;
+  border-bottom: 2px solid var(--main-color5);
+  color: var(--white);
+  background-color: transparent;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.input:focus {
+  border-radius: 5px;
+  border: 2px solid var(--main-color5);
+}
+
+.dateOfDelivery::placeholder {
+  color: var(--white);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
 }
