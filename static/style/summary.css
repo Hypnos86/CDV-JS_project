@@ -1,0 +1,177 @@
+.summary-main {
+  min-height: 70vh;
+  /* background-color: #116566ad; */
+  padding-top: 30px;
+}
+
+.summary-info {
+  border-radius: 10px 0 0 0;
+  background-color: #d9b08c38;
+  width: 40%;
+}
+
+.summary-title {
+  margin: 20px 0;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#buyCarInfo {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.summary-customer {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.ul-formats {
+  margin-top: 20px;
+  margin-left: 140px;
+}
+
+.ul-formats li {
+  margin-top: 15px;
+}
+
+#totalItems li {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+.car-photo {
+  width: 50%;
+}
+
+details {
+  margin-left: 130px;
+  margin-bottom: 80px;
+  width: 60%;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 0.5em 0.5em 0;
+}
+
+summary {
+  font-weight: bold;
+  margin: -0.5em -0.5em 0;
+  padding: 0.5em;
+}
+
+details[open] {
+  padding: 0.5em;
+}
+
+details[open] summary {
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 0.5em;
+}
+
+/* PHOTO */
+.hero-shadow{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.orange-color{
+    color: rgba(255, 102, 0);
+}
+
+/* nawigacja */
+.navbar-brand{
+    font-size: 2.2rem;
+    text-transform: uppercase;
+}
+
+/* welcome */
+.home{
+    position: relative;
+    height: 50rem;
+    z-index: 0;
+    background-image: url("../");
+    background-size: cover;
+    background-position: center;
+}
+
+.home .btn{
+    padding: 1em 2em;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.home .welcome-text{
+    font-size: 2.2rem;
+}
+
+/* travel */
+
+.photo-box h3{
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.photo-icon{
+    font-size: 4rem;
+}
+
+/* photo */
+.carousel-item{
+    position: relative;
+    height: 600px;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+}
+
+.photo-shadow{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+.carousel-img-one{
+    background-image: url("../assets/cars/bmw_5series.jpg");
+
+}
+.carousel-img-two{
+    background-image: url("../assets/cars/fiat_5002.jpg");
+
+}
+
+
+/* contact */
+.contact h3{
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.contact .submit-btn{
+    font-size: 1.6rem;
+}
+
+/* my class */
+
+.my-photo{
+    position: relative;
+    height: 600px;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+
+}
+
+.my-section{
+    background-image: url("src/img/IMG_4039.JPG");
+}

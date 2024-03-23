@@ -45,6 +45,119 @@ export function renderHTMLHeader() {
   $body.insertBefore($header, $body.firstChild);
 }
 
+export function renderHTMLFooter() {
+  const $body = document.querySelector("body");
+  const $footer = document.createElement("footer");
+  $footer.classList.add("bg-dark");
+
+  $footer.innerHTML = `
+  <div id="contact">
+  <div class="contact">
+    <p class="title-text">Napisz do nas!</p>
+    <div class="row wrap">
+      <div class="form">
+        <form>
+          <div class="form-div">
+            <span class="form-text">@</span>
+            <input
+              type="text"
+              placeholder="Imie i nazwisko"
+              class="form-input"
+              name="name_and_lastname"
+            />
+          </div>
+          <div class="form-div">
+            <span class="form-text">@</span>
+            <input
+              type="text"
+              placeholder="Adres emailowy"
+              class="form-input"
+              name="email"
+            />
+          </div>
+          <div class="form-div">
+            <textarea
+              class="form-textarea"
+              rows="6"
+              placeholder="Treść wiadomości"
+              name="message"
+            ></textarea>
+          </div>
+          <input type="submit" value="Wyśli" class="btn-submit" />
+        </form>
+      </div>
+      <div class="contact-info">
+        <h3>Kontakt</h3>
+        <p class="factory-color">Nicponie <sup>&reg;</sup></p>
+        <address>
+          <p><i class="bi bi-at icon-color"></i> kontakt@email.com</p>
+          <p><i class="bi bi-phone icon-color"></i> +48 792 382 000</p>
+          <p>
+            <i class="bi bi-geo-alt icon-color"></i>
+            <span>ul.Kutrzeby 10,</span><br /><span>61-719 Poznań</span>
+          </p>
+        </address>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2433.4922376218096!2d16.92910287667485!3d52.41587817203419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47045b458e6d37f9%3A0x630f1e648e79b67!2sCollegium%20Da%20Vinci!5e0!3m2!1spl!2spl!4v1700586689917!5m2!1spl!2spl"
+          width="240"
+          height="auto"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="copyright">&copy; Nicponie Copyright 2023</p>
+<ul>
+  <li>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      x="0px"
+      y="0px"
+      width="40"
+      height="40"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12,2C6.477,2,2,6.477,2,12c0,5.013,3.693,9.153,8.505,9.876V14.65H8.031v-2.629h2.474v-1.749 c0-2.896,1.411-4.167,3.818-4.167c1.153,0,1.762,0.085,2.051,0.124v2.294h-1.642c-1.022,0-1.379,0.969-1.379,2.061v1.437h2.995 l-0.406,2.629h-2.588v7.247C18.235,21.236,22,17.062,22,12C22,6.477,17.523,2,12,2z"
+      ></path>
+    </svg>
+  </li>
+  <li>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      x="0px"
+      y="0px"
+      width="40"
+      height="40"
+      viewBox="0 0 26 26"
+    >
+      <path
+        d="M 25.855469 5.574219 C 24.914063 5.992188 23.902344 6.273438 22.839844 6.402344 C 23.921875 5.75 24.757813 4.722656 25.148438 3.496094 C 24.132813 4.097656 23.007813 4.535156 21.8125 4.769531 C 20.855469 3.75 19.492188 3.113281 17.980469 3.113281 C 15.082031 3.113281 12.730469 5.464844 12.730469 8.363281 C 12.730469 8.773438 12.777344 9.175781 12.867188 9.558594 C 8.503906 9.339844 4.636719 7.246094 2.046875 4.070313 C 1.59375 4.847656 1.335938 5.75 1.335938 6.714844 C 1.335938 8.535156 2.261719 10.140625 3.671875 11.082031 C 2.808594 11.054688 2 10.820313 1.292969 10.425781 C 1.292969 10.449219 1.292969 10.46875 1.292969 10.492188 C 1.292969 13.035156 3.101563 15.15625 5.503906 15.640625 C 5.0625 15.761719 4.601563 15.824219 4.121094 15.824219 C 3.78125 15.824219 3.453125 15.792969 3.132813 15.730469 C 3.800781 17.8125 5.738281 19.335938 8.035156 19.375 C 6.242188 20.785156 3.976563 21.621094 1.515625 21.621094 C 1.089844 21.621094 0.675781 21.597656 0.265625 21.550781 C 2.585938 23.039063 5.347656 23.90625 8.3125 23.90625 C 17.96875 23.90625 23.25 15.90625 23.25 8.972656 C 23.25 8.742188 23.246094 8.515625 23.234375 8.289063 C 24.261719 7.554688 25.152344 6.628906 25.855469 5.574219"
+      ></path>
+    </svg>
+  </li>
+  <li>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      x="0px"
+      y="0px"
+      width="40"
+      height="40"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z"
+      ></path>
+    </svg>
+  </li>
+</ul>`;
+  $body.insertBefore($footer, $body.lastChild);
+}
+
 function setToLocalSstorage(nameList, storageObject) {
   try {
     localStorage.setItem(nameList, JSON.stringify(storageObject));
@@ -60,6 +173,12 @@ function getFromLocaStorage(nameList) {
   } catch (e) {
     console.error(`getFromLocaStorage: ${e}`);
   }
+}
+
+function removeAllLocalStorage(){
+  localStorage.removeItem(carLocalStorage)
+  localStorage.removeItem(clientLocalStorage)
+  localStorage.removeItem(accessoriesLocalStorage)
 }
 
 function renderHTMLCarsList(CarsList) {
@@ -508,16 +627,20 @@ export function buyingCar() {
   button.addEventListener("click", () => {
     const accessoryChoosenList =
       accessoriesInstance.getAllSelectedAccessproes();
-    setToLocalSstorage(accessoriesLocalStorage, accessoryChoosenList);
+    console.log(accessoryChoosenList);
+    if (accessoryChoosenList.length != 0) {
+      console.log(accessoryChoosenList);
+      setToLocalSstorage(accessoriesLocalStorage, accessoryChoosenList);
+    } else {
+      localStorage.removeItem(accessoriesLocalStorage);
+    }
     const message =
-      "Gratulacje, własnie kupiłeś swoje auto \n Za chwile zostaniesz przekierowany do posumowania";
+      "Gratulacje, kupiłeś auto \n Za chwile przekierujemy cię do posumowania";
 
     const isvalidate = getClientValidationData();
     if (isvalidate) {
       showSnackbar(message);
       setTimeout(() => {
-        console.log("przeniesienie do strony");
-        console.log("2");
         window.location.href = "summary.html";
       }, 6000);
     } else {
@@ -527,4 +650,95 @@ export function buyingCar() {
   });
 }
 
-export function renderHTMLSummary() {}
+function summaryRender(carInfo, accesoriesInfo) {
+  console.log(carInfo);
+  console.log(accesoriesInfo);
+  const ul = document.getElementById("totalItems");
+  if (carInfo && accesoriesInfo) {
+    const carLi = document.createElement("LI");
+    const spanName = document.createElement("SPAN");
+    spanName.innerText = carInfo.brand;
+    const spanPrice = document.createElement("SPAN");
+    spanPrice.innerText = `${carInfo.price.toLocaleString("pl-PL")} zł`;
+
+    carLi.appendChild(spanName);
+    carLi.appendChild(spanPrice);
+    ul.appendChild(carLi);
+
+    accesoriesInfo.forEach((item) => {
+      const li = document.createElement("LI");
+      const spanName = document.createElement("SPAN");
+      spanName.innerText = item.name;
+      const spanPrice = document.createElement("SPAN");
+      spanPrice.innerText = `${item.price.toLocaleString("pl-PL")} zł`;
+
+      li.appendChild(spanName);
+      li.appendChild(spanPrice);
+      ul.appendChild(li);
+    });
+  } else {
+    const carLi = document.createElement("LI");
+    const spanName = document.createElement("SPAN");
+    spanName.innerText = carInfo.brand;
+    const spanPrice = document.createElement("SPAN");
+    spanPrice.innerText = `${carInfo.price.toLocaleString("pl-PL")} zł`;
+    carLi.appendChild(spanName);
+    carLi.appendChild(spanPrice);
+    ul.appendChild(carLi);
+  }
+}
+
+function sumTotal(carInfo, accesoriesInfo) {
+  if (carInfo && accesoriesInfo) {
+    let carSum = parseFloat(carInfo.price);
+
+    let accesoriesSum = accesoriesInfo.reduce((acc, item) => {
+      return acc + parseFloat(item.price);
+    }, 0);
+    summaryRender(carInfo, accesoriesInfo);
+    return carSum + accesoriesSum;
+  } else {
+    const carSum = parseFloat(carInfo.price);
+    summaryRender(carInfo, accesoriesInfo);
+    return carSum;
+  }
+}
+
+export function renderHTMLSummary() {
+  const carInfo = getFromLocaStorage(carLocalStorage);
+  const clientInfo = getFromLocaStorage(clientLocalStorage);
+  const accesoriesInfo = getFromLocaStorage(accessoriesLocalStorage);
+
+  const carInfoLabel = document.getElementById("buyCarInfo");
+  carInfoLabel.innerText = `${carInfo.brand} ${carInfo.model} ${carInfo.enginePower} (${carInfo.generation}) ${carInfo.year} rok `;
+
+  const ul = document.getElementById("customerInfo");
+  ul.classList.add("ul-formats");
+  const customerNameLi = document.createElement("LI");
+  customerNameLi.innerText = `Kupujcy: ${clientInfo.name.toUpperCase()}`;
+  const deliveryPlaceLi = document.createElement("LI");
+  deliveryPlaceLi.innerText = `Miejsce dostawy: ${clientInfo.deliveryPlace.toUpperCase()}`;
+  const deloieryDateLi = document.createElement("LI");
+  const deliveryDate = new Date(clientInfo.deliveryDate);
+  const formatedDate = `${deliveryDate.getDate()}.${
+    deliveryDate.getMonth() + 1
+  }.${deliveryDate.getFullYear()}`;
+  deloieryDateLi.innerText = `Data dostawy: ${formatedDate} r.`;
+  const financingLi = document.createElement("LI");
+  financingLi.innerText = `Sposób płatności: ${clientInfo.financing}`;
+
+  ul.appendChild(customerNameLi);
+  ul.appendChild(deliveryPlaceLi);
+  ul.appendChild(deloieryDateLi);
+  ul.appendChild(financingLi);
+
+  const totalSum = sumTotal(carInfo, accesoriesInfo).toLocaleString("pl-Pl");
+
+  const $totalCost = document.getElementById("totalCost");
+  $totalCost.innerText = `Do zapłaty: ${totalSum} zł`;
+
+  removeAllLocalStorage()
+  console.log(carInfo);
+  console.log(clientInfo);
+  console.log(accesoriesInfo);
+}
