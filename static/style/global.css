@@ -140,11 +140,11 @@ a {
 }
 
 :root {
-  --main-color1: #2C3531;
+  --main-color1: #2c3531;
   --main-color2: #116466;
-  --main-color3: #D9B08C;
-  --main-color4: #FFCB9A;
-  --main-color5: #D1E8E2;
+  --main-color3: #d9b08c;
+  --main-color4: #ffcb9a;
+  --main-color5: #d1e8e2;
   --white: ghostwhite;
 
   /* -------------------------- */
@@ -210,6 +210,10 @@ main {
   justify-content: space-around;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .align-center {
   align-items: center;
 }
@@ -236,7 +240,7 @@ main {
 header {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 5;
 }
 
 .header-color {
@@ -346,6 +350,10 @@ footer ul li {
   color: white;
 }
 
+form {
+  min-width: 350px;
+}
+
 .form {
   display: flex;
   flex-flow: nowrap;
@@ -359,12 +367,8 @@ footer ul li {
 .form-div {
   display: flex;
   align-items: stretch;
-  width: 100%;
+  width: 70%;
   margin-bottom: 10px;
-}
-
-form {
-  text-align: center;
 }
 
 .form-text {
@@ -402,6 +406,8 @@ form {
   color: whitesmoke;
   font-size: 18px;
   cursor: pointer;
+  width: 250px;
+  min-width: 150px;
 }
 
 li svg {
@@ -414,7 +420,7 @@ li svg {
   border-bottom: 2px solid var(--main-color4);
 }
 
-#search::placeholder{
+#search::placeholder {
   color: gainsboro;
 }
 
@@ -432,7 +438,7 @@ input {
   bottom: 50%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #333;
+  background-color: #179a9c8f;
   color: #fff;
   padding: 15px 20px;
   border-radius: 8px;
@@ -482,4 +488,53 @@ input {
     font-size: 10px;
     margin-right: 5px;
   }
+}
+
+.contact-info h3 {
+  margin-bottom: 7px;
+}
+
+.factory-color {
+  margin-bottom: 5px;
+}
+
+address p {
+  margin: 8px;
+}
+
+.no-valid {
+  background-color: var(--logo-color);
+  padding: 7px 8px;
+  border-radius: 25px;
+}
+
+.no-validate-radiobutton {
+  margin-top: 5px;
+  background-color: var(--logo-color);
+  padding: 7px 8px;
+  border-radius: 25px;
+}
+svg {
+  transition: transform 0.5s;
+}
+
+svg:hover {
+  transform: scale(1.4);
+}
+
+.facebook:hover {
+  fill: #0866ff;
+}
+
+.twitter:hover {
+  fill: #1c96e8;
+}
+
+.instagram:hover{
+  fill: url(instagramGradient)
+
+}
+
+svg:hover {
+  fill: url(#instagramGradient);
 }

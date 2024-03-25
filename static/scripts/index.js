@@ -11,6 +11,7 @@ import {
   addAccessoryToNewList,
   removeAccessoryItemFromList,
   buyingCar,
+  renderHTMLFooter
 } from "./script.js";
 titlePage("Drifter Shop");
 renderHTMLHeader();
@@ -23,3 +24,4 @@ renderList(accessoriesList.newList);
 addAccessoryToNewList();
 removeAccessoryItemFromList();
 buyingCar();
+renderHTMLFooter()

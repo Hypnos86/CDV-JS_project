@@ -117,22 +117,51 @@
 }
 
 .choosenCar {
-  width: 20%;
-  align-self: center;
+  padding-top: 35px;
+  text-align: center;
+  width: auto;
+}
+
+.choosenCar h2 {
+  font-size: 2rem;
+}
+
+.choosenCar h3 {
+  font-size: 1.2rem;
+  color: var(--main-color4);
+  font-weight: 700;
 }
 
 fieldset {
-  margin: 40px 20px;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid whitesmoke;
+  min-width: 260px;
+  min-height: 135px;
+}
+.fildset-radio {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
 }
 
+.radio-list {
+  text-align: center;
+}
+
+.radio-list input,
+label {
+  display: inline-block;
+  width: 80px;
+  margin-top: 5px;
+}
 .customer-data ul {
-  margin: 30px;
+  margin: 15px;
 }
 
 .customer-data ul li {
   margin: 15px 0;
+  min-width: 450px;
 }
 
 .customer-data ul li label {
@@ -157,7 +186,6 @@ fieldset {
   content: counter(list-counter) ".";
   counter-increment: list-counter;
   width: 30px;
- 
 }
 
 .accessories-list li:hover {
@@ -172,7 +200,6 @@ fieldset {
 .accessories-name {
   min-width: 300px;
   padding: 2px;
-  
 }
 
 .accessories-price {
@@ -188,18 +215,11 @@ fieldset {
   padding: 2px 8px;
   font-weight: 800;
 }
-
-.cancelAndBuyButton {
-  padding: 0 150px 30px;
-}
-
 .accessories-title {
   text-align: center;
 }
 
-label {
-  padding: 5px;
-}
+
 
 .input {
   width: 180px;
@@ -209,6 +229,12 @@ label {
   background-color: transparent;
   padding: 5px;
   padding-left: 10px;
+}
+
+.btn-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .input:focus {
@@ -222,4 +248,35 @@ label {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(100%);
+}
+
+.finance {
+  height: auto;
+  margin-bottom: 25px;
+}
+
+.custom-data {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: var(--main-color1);
+}
+
+.choose-btn {
+  width: 150px;
+  padding: 8px;
+  transition: transform 0.8s;
+  font-size: 1rem;
+  border: 1px solid var(--main-color5);
+  border: 10px;
+  background-color: var(--yellow);
+  color: var(--main-color5);
+}
+
+.choose-btn:hover {
+  box-shadow: 5px 5px 5px;
+  transform: scale(1.1);
+}
+
+#acceptBuy:hover {
+  background: linear-gradient(to top, var(--main-color2), var(--main-color3));
 }

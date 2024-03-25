@@ -10,10 +10,10 @@
     <script defer type="module" src="./static/scripts/summary.js"></script>
   </head>
   <body>
-    <main class="summary-main flex">
+    <main class="summary-main flex wrap">
       <div class="summary-info">
         <h2 class="summary-title">Dokonałeś zakupu</h2>
-        <h3 id="buyCarInfo" class="summary-car"></h2>
+        <h3 id="buyCarInfo" class="summary-car"></h3>
         <div class="summary-customer">
           <ul id="customerInfo"></ul>
         </div>
@@ -22,43 +22,11 @@
           <ul id="totalItems"></ul>
         </details>
       </div>
-      <section class="car-photo">
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-            </div>
-            <div class="carousel-inner text-light text-center">
-
-                <div class="carousel-item carousel-img-one">
-                    <div class="carousel-caption h-100 p-5 d-flex flex-column justify-content-end justify-content-md-center align-items-center">
-                        <p class="display-3">Lorem, ipsum dolor.</p>
-                        <p class="d-none d-sm-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                    </div>
-                    <div class="hero-shadow"></div>
-                </div>
-                <div class="carousel-item carousel-img-two">
-                    <div class="carousel-caption h-100 p-5 d-flex flex-column justify-content-end justify-content-md-center align-items-center">
-                        <p class="display-3">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                        <p class="d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-                            repellat alias voluptas! Similique, molestiae officia!</p>
-                    </div>
-                    <div class="hero-shadow"></div>
-                </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
-    </section>
+      <!-- tutaj zaczynamy -->
+      <div id="photo-car" class="slider-container">
+      
       </div>
+      <!-- tutaj konczymy -->
     </main>
   </body>
 </html>

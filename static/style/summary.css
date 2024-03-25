@@ -7,7 +7,7 @@
 .summary-info {
   border-radius: 10px 0 0 0;
   background-color: #d9b08c38;
-  width: 40%;
+  min-width: 50%;
 }
 
 .summary-title {
@@ -46,8 +46,10 @@
 
 details {
   margin-left: 130px;
+  margin-right: 130px;
   margin-bottom: 80px;
-  width: 60%;
+  width: 300px;
+  min-width: 55%;
   border: 1px solid #aaa;
   border-radius: 4px;
   padding: 0.5em 0.5em 0;
@@ -68,110 +70,31 @@ details[open] summary {
   margin-bottom: 0.5em;
 }
 
-/* PHOTO */
-.hero-shadow{
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
+/* slider */
+
+.slider-container {
+  /* position: relative; */
+  min-width: 20%;
+  max-width: 50%;
+  height: auto;
+  /* overflow: hidden;
+  text-align: center; */
+  /* background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 
-.orange-color{
-    color: rgba(255, 102, 0);
+.slider-container img {
+  width: 70%;
+  opacity: 0.7;
+  border-radius: 0 10px 10px 0;
+  border: 2px solid var(--main-color5)
 }
 
-/* nawigacja */
-.navbar-brand{
-    font-size: 2.2rem;
-    text-transform: uppercase;
-}
-
-/* welcome */
-.home{
-    position: relative;
-    height: 50rem;
-    z-index: 0;
-    background-image: url("../");
-    background-size: cover;
-    background-position: center;
-}
-
-.home .btn{
-    padding: 1em 2em;
-    font-size: 1.4rem;
-    text-transform: uppercase;
-}
-
-.home .welcome-text{
-    font-size: 2.2rem;
-}
-
-/* travel */
-
-.photo-box h3{
-    font-size: 1.4rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.photo-icon{
-    font-size: 4rem;
-}
-
-/* photo */
-.carousel-item{
-    position: relative;
-    height: 600px;
-    background-position: center;
-    background-size: cover;
-    z-index: 0;
-}
-
-.photo-shadow{
-    position: absolute;
-    top:0;
-    left: 0;
-    width: 100px;
-    height: 100px;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: -1;
-}
-
-.carousel-img-one{
-    background-image: url("../assets/cars/bmw_5series.jpg");
-
-}
-.carousel-img-two{
-    background-image: url("../assets/cars/fiat_5002.jpg");
-
-}
-
-
-/* contact */
-.contact h3{
-    font-size: 2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.contact .submit-btn{
-    font-size: 1.6rem;
-}
-
-/* my class */
-
-.my-photo{
-    position: relative;
-    height: 600px;
-    background-position: center;
-    background-size: cover;
-    z-index: 0;
-
-}
-
-.my-section{
-    background-image: url("src/img/IMG_4039.JPG");
+#photo-car {
+  display: flex;
+  justify-content: space-around;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
