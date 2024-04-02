@@ -80,15 +80,16 @@
 
 .btn-choose {
   color: var(--main-color1);
+  outline: 0;
   font-weight: 800;
   width: 150px;
   max-width: 80%;
   margin-top: 15px;
   margin-bottom: 10px;
-  padding: 5px 10px;
+  padding: 8px 10px;
   transition: transform 0.3s;
-  border-radius: 10px;
-  border: 1px solid transparent;
+  /* border-radius: 10px; */
+  border: 0px solid transparent;
   background: linear-gradient(
     to top left,
     var(--main-color3),
@@ -105,7 +106,7 @@
     var(--main-color3),
     var(--white)
   );
-  border: 1px solid var(--main-color5);
+  border: 0px solid transparent;
   box-shadow: 0px 0px 15px 5px var(--main-color3);
   cursor: pointer;
 }
@@ -219,8 +220,6 @@ label {
   text-align: center;
 }
 
-
-
 .input {
   width: 180px;
   border: 0;
@@ -266,22 +265,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding: 8px;
   transition: transform 0.8s;
   font-size: 1rem;
-  border: 1px solid var(--main-color5);
   border: 10px;
   background-color: var(--yellow);
   color: var(--main-color5);
+  cursor: pointer;
 }
 
 .choose-btn:hover {
-  box-shadow: 5px 5px 5px;
   transform: scale(1.1);
+  background-color: var(--main-color5);
+  color: var(--yellow);
 }
 
-#acceptBuy:hover {
-  background: linear-gradient(to top, var(--main-color2), var(--main-color3));
-}
-
-.search-bar label{
+.search-bar label {
   min-width: 180px;
   text-align: right;
 }
