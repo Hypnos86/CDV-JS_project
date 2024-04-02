@@ -34,7 +34,7 @@ export class Accessories {
     return this.list;
   }
 
-  getAllSelectedAccessproes() {
+  getAllSelectedAccessories() {
     return this.selectedList;
   }
 
@@ -44,11 +44,9 @@ export class Accessories {
       accessoriesSum.push(Number(x.price));
     });
 
-    let valueOfSum = accessoriesSum.reduce((acc, currentValue) => {
+    return accessoriesSum.reduce((acc, currentValue) => {
       return acc + currentValue;
     }, 0);
-
-    return valueOfSum;
   }
 
   getFilteredAccessories() {

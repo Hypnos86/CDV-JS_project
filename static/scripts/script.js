@@ -18,12 +18,11 @@ export function titlePage(text) {
 }
 
 function showSnackbar(message) {
-  var snackbar = document.getElementById("snackbar");
+  const snackbar = document.getElementById("snackbar");
   snackbar.innerText = message;
   snackbar.className = "show";
   setTimeout(function () {
     snackbar.classList.remove("show");
-    // snackbar.className = snackbar.className.replace("show", "");
   }, 5000);
 }
 
@@ -190,11 +189,11 @@ function removeAllLocalStorage() {
   localStorage.removeItem(accessoriesLocalStorage);
 }
 
-function renderHTMLCarsList(CarsList) {
+function renderHTMLCarsList(carsList) {
   const ul = document.getElementById("cars");
   ul.style.width = "70%";
 
-  CarsList.forEach((car) => {
+  carsList.forEach((car) => {
     let li = document.createElement("LI");
     li.classList.add("flex", "wrap");
 
@@ -303,7 +302,7 @@ function renderHTMLSearchCar(htmlObject) {
   }
 }
 
-export function searchCar() {
+export function initSearchBarCar() {
   const $searchInput = document.getElementById("search");
   renderHTMLSearchCar($searchInput);
 }
@@ -421,7 +420,7 @@ export function renderList(typeList) {
   if (typeList == accessoriesList.newList) {
     accessoryList = accessoriesInstance.getFilteredAccessories();
   } else {
-    accessoryList = accessoriesInstance.getAllSelectedAccessproes();
+    accessoryList = accessoriesInstance.getAllSelectedAccessories();
   }
   const $parent = document.getElementById(
     typeList === accessoriesList.newList ? "accessories" : "choosenAccessories"
@@ -635,7 +634,7 @@ export function buyingCar() {
   const button = document.getElementById("acceptBuy");
   button.addEventListener("click", () => {
     const accessoryChoosenList =
-      accessoriesInstance.getAllSelectedAccessproes();
+      accessoriesInstance.getAllSelectedAccessories();
     console.log(accessoryChoosenList);
     if (accessoryChoosenList.length != 0) {
       console.log(accessoryChoosenList);
@@ -754,7 +753,7 @@ export function renderHTMLSummary() {
   const $totalCost = document.getElementById("totalCost");
   $totalCost.innerText = `Do zapłaty: ${totalSum} zł`;
 
-  removeAllLocalStorage()
+  removeAllLocalStorage();
   console.log(carInfo);
   console.log(clientInfo);
   console.log(accesoriesInfo);
