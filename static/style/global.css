@@ -245,7 +245,7 @@ header {
 }
 
 .header-color {
-  background-color: var(--header-color);
+  background-color: var(--header-theme);
 }
 
 header img {
@@ -531,9 +531,8 @@ svg:hover {
   fill: #1c96e8;
 }
 
-.instagram:hover{
-  fill: url(instagramGradient)
-
+.instagram:hover {
+  fill: url(instagramGradient);
 }
 
 svg:hover {

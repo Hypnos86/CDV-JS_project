@@ -29,7 +29,7 @@ function showSnackbar(message) {
 export function renderHTMLHeader() {
   const $body = document.querySelector("body");
   const $header = document.createElement("header");
-  $header.classList.add("header-theme");
+  $header.classList.add("header-color");
   $header.classList.add("flex");
   $header.classList.add("justify-between");
   $header.classList.add("align-center");
