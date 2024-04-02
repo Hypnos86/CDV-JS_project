@@ -3,7 +3,7 @@ import {
   renderHTMLHeader,
   titlePage,
   carInject,
-  searchCar,
+  initSearchBarCar,
   choosenCar,
   cancelChoose,
   newCalendar,
@@ -16,7 +16,7 @@ import {
 titlePage("Drifter Shop");
 renderHTMLHeader();
 carInject();
-searchCar();
+initSearchBarCar();
 choosenCar();
 cancelChoose();
 newCalendar();

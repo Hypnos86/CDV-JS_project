@@ -430,17 +430,6 @@ export function renderList(typeList) {
   $parent.appendChild(htmlList);
 }
 
-// export function createChoosenAccessoriesList(object) {
-//   let list = [];
-//   const ul = document.getElementById("choosenAccessories");
-//   let li = document.createElement("LI");
-//   let span = document.createElement("SPAN");
-//   span.innerText = `${object.name} - ${object.price}`;
-//   li.appendChild(span);
-//   ul.appendChild(li);
-//   list.push(object);
-// }
-
 function injectionAccessoriesSum(sumValue) {
   let span = document.getElementById("accessoriesSum");
   span.innerText = `Kwota akesoriów brutto: ${sumValue.toLocaleString(
