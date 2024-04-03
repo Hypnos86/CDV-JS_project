@@ -40,6 +40,7 @@ export class Accessories {
 
   getSumAccessoriesFromSelectedList() {
     let accessoriesSum = [];
+
     this.selectedList.forEach((x) => {
       accessoriesSum.push(Number(x.price));
     });

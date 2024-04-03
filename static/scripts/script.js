@@ -1,13 +1,13 @@
 import { Cars } from "./cars.js";
 import { Accessories } from "./accessories.js";
 
-// Obiekty statyczne
+// static variable
 const carsInstance = new Cars();
 const carLocalStorage = "buyCar";
 const accessoriesInstance = new Accessories();
 const accessoriesLocalStorage = "buyAccessories";
 const clientLocalStorage = "client";
-// ENUM dla list akcesoriów
+
 export const accessoriesList = {
   newList: "newList",
   selectedList: "selectedList",
@@ -356,8 +356,8 @@ export function cancelChoose() {
     $mainTag.classList.toggle("hidden");
     $customize.classList.toggle("hidden");
     accessoriesInstance.removeAllSelectedList();
-    renderList(accessoriesList.newList);
-    renderList(accessoriesList.selectedList);
+    renderAccessoriesNewList(accessoriesList.newList);
+    renderAccessoriesNewList(accessoriesList.selectedList);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -365,7 +365,7 @@ export function cancelChoose() {
   });
 }
 
-export function newCalendar() {
+export function adaptedCalendar() {
   const calendarInputs = document.getElementsByClassName("dateOfDelivery");
 
   if (calendarInputs.length === 0) {
@@ -415,7 +415,7 @@ function renderHTMLAccessoryList(accessoryList, typeList) {
   return ul;
 }
 
-export function renderList(typeList) {
+export function renderAccessoriesNewList(typeList) {
   let accessoryList;
   if (typeList == accessoriesList.newList) {
     accessoryList = accessoriesInstance.getFilteredAccessories();
@@ -447,20 +447,20 @@ function selectAccessory(htmlObject) {
       const id = Number(itemId.innerText);
 
       accessoriesInstance.addAccessory(id);
-      renderList(accessoriesList.newList);
-      renderList(accessoriesList.selectedList);
+      renderAccessoriesNewList(accessoriesList.newList);
+      renderAccessoriesNewList(accessoriesList.selectedList);
       const valueSum = accessoriesInstance.getSumAccessoriesFromSelectedList();
       injectionAccessoriesSum(valueSum);
     }
   });
 }
 
-export function addAccessoryToNewList() {
+export function setAccessoryToNewList() {
   try {
     const accessories = document.getElementById("accessories");
     selectAccessory(accessories);
   } catch (e) {
-    console.error(`addAccessoryToNewList: ${e}`);
+    console.error(`setAccessoryToNewList: ${e}`);
   }
 }
 
@@ -473,8 +473,8 @@ function removeAccessoryItem(htmlObject) {
       const id = Number(itemId.innerText);
 
       accessoriesInstance.removeAccessory(id);
-      renderList(accessoriesList.newList);
-      renderList(accessoriesList.selectedList);
+      renderAccessoriesNewList(accessoriesList.newList);
+      renderAccessoriesNewList(accessoriesList.selectedList);
 
       const valueSum = accessoriesInstance.getSumAccessoriesFromSelectedList();
       injectionAccessoriesSum(valueSum);
@@ -486,7 +486,7 @@ export function removeAccessoryItemFromList() {
   removeAccessoryItem(accessories);
 }
 
-// Walidowanie danych
+// data validate
 function showNoValidateHtmlElement(htmlObject) {
   const existingSpan = htmlObject.querySelector(".no-valid");
 
@@ -576,29 +576,28 @@ function validateRadioButtons(radiobutonsObject) {
   }
 }
 
-// Pobieranie danych kllienta i walidacja
+// validate client data
 function getClientValidationData() {
   // Validate name and surname
   const $nameAndSurname = document.getElementById("nameAndSurname");
   const nameAndSurname = $nameAndSurname.value;
   const validateInputNameAndSurname = validateNameAndSurname(nameAndSurname);
-  console.log(validateInputNameAndSurname);
+
   // Validate delivery place
   const $deliveryPlace = document.getElementById("placeOfDelivery");
   const deliveryPlace = $deliveryPlace.value;
   const validateInputDeliveryPlace = validateDeliveryPlace(deliveryPlace);
-  console.log(validateInputDeliveryPlace);
+
   // Validate delivery date
   const $deliveryDate = document.getElementById("dateOfDelivery");
   const deliveryDate = $deliveryDate.value;
   const validateInputDeliveryDate = validateDeliveryDate(deliveryDate);
-  console.log(validateInputDeliveryDate);
+
   // Validate radiobuton
   const $paymentMethod = document.querySelectorAll(
     'input[type="radio"][name="finansing"]'
   );
   const radiobuttonObject = validateRadioButtons($paymentMethod);
-  console.log(radiobuttonObject.isvalidate);
 
   if (
     validateInputNameAndSurname &&
@@ -624,9 +623,8 @@ export function buyingCar() {
   button.addEventListener("click", () => {
     const accessoryChoosenList =
       accessoriesInstance.getAllSelectedAccessories();
-    console.log(accessoryChoosenList);
+
     if (accessoryChoosenList.length != 0) {
-      console.log(accessoryChoosenList);
       setToLocalSstorage(accessoriesLocalStorage, accessoryChoosenList);
     } else {
       localStorage.removeItem(accessoriesLocalStorage);
@@ -648,8 +646,6 @@ export function buyingCar() {
 }
 
 function summaryRender(carInfo, accesoriesInfo) {
-  console.log(carInfo);
-  console.log(accesoriesInfo);
   const ul = document.getElementById("totalItems");
   if (carInfo && accesoriesInfo) {
     const carLi = document.createElement("LI");
@@ -701,6 +697,15 @@ function sumTotal(carInfo, accesoriesInfo) {
   }
 }
 
+function renderCarImg(carImages) {
+  const $photoCar = document.getElementById("photo-car");
+  for (let image of carImages) {
+    const img = document.createElement("IMG");
+    img.src = `./static/assets/cars/${image}`;
+    $photoCar.appendChild(img);
+  }
+}
+
 export function renderHTMLSummary() {
   const carInfo = getFromLocaStorage(carLocalStorage);
   const clientInfo = getFromLocaStorage(clientLocalStorage);
@@ -729,13 +734,7 @@ export function renderHTMLSummary() {
   ul.appendChild(deloieryDateLi);
   ul.appendChild(financingLi);
 
-  const $photoCar = document.getElementById("photo-car");
-  const img1 = document.createElement("IMG");
-  const img2 = document.createElement("IMG");
-  img1.src = `./static/assets/cars/${carInfo.image[0]}`;
-  img2.src = `./static/assets/cars/${carInfo.image[1]}`;
-  $photoCar.appendChild(img1);
-  $photoCar.appendChild(img2);
+  renderCarImg(carInfo.image);
 
   const totalSum = sumTotal(carInfo, accesoriesInfo).toLocaleString("pl-Pl");
 
@@ -743,7 +742,4 @@ export function renderHTMLSummary() {
   $totalCost.innerText = `Do zapłaty: ${totalSum} zł`;
 
   removeAllLocalStorage();
-  console.log(carInfo);
-  console.log(clientInfo);
-  console.log(accesoriesInfo);
 }

@@ -6,12 +6,12 @@ import {
   initSearchBarCar,
   choosenCar,
   cancelChoose,
-  newCalendar,
-  renderList,
-  addAccessoryToNewList,
+  adaptedCalendar,
+  renderAccessoriesNewList,
+  setAccessoryToNewList,
   removeAccessoryItemFromList,
   buyingCar,
-  renderHTMLFooter
+  renderHTMLFooter,
 } from "./script.js";
 titlePage("Drifter Shop");
 renderHTMLHeader();
@@ -19,9 +19,9 @@ carInject();
 initSearchBarCar();
 choosenCar();
 cancelChoose();
-newCalendar();
-renderList(accessoriesList.newList);
-addAccessoryToNewList();
+adaptedCalendar();
+renderAccessoriesNewList(accessoriesList.newList);
+setAccessoryToNewList();
 removeAccessoryItemFromList();
 buyingCar();
-renderHTMLFooter()
+renderHTMLFooter();
